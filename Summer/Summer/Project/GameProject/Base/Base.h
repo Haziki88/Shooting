@@ -8,6 +8,8 @@ enum {
 	eType_Goal,
 	eType_Player_Attack,
 	eType_Enemy_Attack,
+	eType_Player_Bullet,
+	eType_Enemy_Bullet,
 	eType_Effect,
 	eType_UI,
 	eType_Scene,
@@ -26,6 +28,8 @@ public:
 	float m_rad;
 	//移動ベクトル
 	CVector2D m_vec;
+	//回転値
+	float m_ang;
 	//削除フラグ
 	bool m_kill;
 	//オブジェクトのリスト
