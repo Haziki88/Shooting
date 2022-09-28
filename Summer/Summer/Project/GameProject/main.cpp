@@ -12,7 +12,7 @@
 #include"Game/AnimData.h"
 #include"Base/Base.h"
 #include"Game/Player.h"
-
+#include"Game/Map.h"
 
 
 void MainLoop(void) {
@@ -64,10 +64,12 @@ void Init(void)
 	//ƒQ[ƒ€‹N“®‚Éˆê“x‚¾‚¯ŒÄ‚Î‚ê‚é
 	//-----------------------------------------------------
 	ADD_RESOURCE("players blue x2", CImage::CreateImage("Image/players blue x2.png",player_anim_data,64,64));
+	ADD_RESOURCE("tileset x2", CImage::CreateImage("Image/tileset x2.png"));
 
 
 
 	Base::Add(new Player(CVector2D(200,300),false));
+	Base::Add(new Map());
 
 
 }
