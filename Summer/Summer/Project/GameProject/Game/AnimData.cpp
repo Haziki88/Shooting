@@ -6,10 +6,10 @@ static TexAnim playerIdle[] = {
 	
 };
 static TexAnim playerRun[] = {
-	{ 24,4 },
-	{ 25,4 },
-	{ 26,4 },
-	{ 27,4 },
+	{ 24,5 },
+	{ 25,5 },
+	{ 26,5 },
+	{ 27,5 },
 	
 };
 static TexAnim playerJumpUp[] = {
