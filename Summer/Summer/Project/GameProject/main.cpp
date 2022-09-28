@@ -9,7 +9,9 @@
 //--------------------------------------------
 //グローバル変数領域
 //--------------------------------------------
+#include"Game/AnimData.h"
 #include"Base/Base.h"
+#include"Game/Player.h"
 
 
 
@@ -61,11 +63,11 @@ void Init(void)
 	//初期化の命令を書く
 	//ゲーム起動時に一度だけ呼ばれる
 	//-----------------------------------------------------
-	
+	ADD_RESOURCE("players blue x2", CImage::CreateImage("Image/players blue x2.png",player_anim_data,64,64));
 
 
 
-
+	Base::Add(new Player(CVector2D(200,300),false));
 
 
 }

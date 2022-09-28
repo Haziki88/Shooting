@@ -6,15 +6,16 @@
 Player::Player(const CVector2D& p, bool flip) :
 	Base(eType_Player) {
 	//画像複製
-	m_img = COPY_RESOURCE("Player", CImage);
+	m_img = COPY_RESOURCE("players blue x2", CImage);
 	//再生アニメーション設定
 	m_img.ChangeAnimation(0);
 	//座標設定
 	m_pos = p;
 	//中心位置設定
-	m_img.SetCenter(128, 224);
+	m_img.SetCenter(64, 96);
+	m_rect = CRect(-32, -64, 32, 0);
 	//反転フラグ
-	m_flip = flip;
+	
 	//通常状態へ
 	m_state = eState_Idle;
 	//着地フラグ
@@ -25,6 +26,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	m_damage_no = -1;
 	//
 	m_hp = 100;
+	
 
 
 }void Player::StateIdle()
@@ -152,8 +154,8 @@ void Player::Update() {
 	if (m_is_ground && m_vec.y > GRAVITY * 4)
 		m_is_ground = false;
 	//重力による落下
-	m_vec.y += GRAVITY;
-	m_pos += m_vec;
+	//m_vec.y += GRAVITY;
+	//m_pos += m_vec;
 
 
 	//アニメーション更新
@@ -171,6 +173,7 @@ void Player::Draw() {
 	m_img.SetFlipH(m_flip);
 	//描画
 	m_img.Draw();
+	DrawRect();
 }
 void Player::Collision(Base* b)
 {
