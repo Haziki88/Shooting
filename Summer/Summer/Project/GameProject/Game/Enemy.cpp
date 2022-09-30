@@ -7,7 +7,7 @@
 Enemy::Enemy(const CVector2D& p, bool flip) :
 	Base(eType_Enemy) {
 	//画像複製
-	m_img = COPY_RESOURCE("Enemy", CImage);
+	m_img = COPY_RESOURCE("Enemy.png", CImage);
 
 	//m_img.Load("Image/Enemy.png", enemy_anim_data, 256, 256);
 	//再生アニメーション設定
@@ -15,9 +15,9 @@ Enemy::Enemy(const CVector2D& p, bool flip) :
 	//座標設定
 	m_pos = p;
 	//中心位置設定
-	m_img.SetCenter(128, 224);
+	m_img.SetCenter(32, 64);
 	//当たり判定用矩形設定
-	m_rect = CRect(-32, -128, 32, 0);
+	m_rect = CRect(-32, -64, 32, 0);
 	//反転フラグ
 	m_flip = flip;
 	//通常状態へ
@@ -164,13 +164,6 @@ void Enemy::Update() {
 		StateDown();
 		break;
 	}
-	//落ちていたら落下中状態へ移行
-	if (m_is_ground && m_vec.y > GRAVITY * 4)
-		m_is_ground = false;
-	//重力による落下
-	m_vec.y += GRAVITY;
-	m_pos += m_vec;
-
 
 	//アニメーション更新
 	m_img.UpdateAnimation();
