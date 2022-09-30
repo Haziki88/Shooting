@@ -97,9 +97,10 @@ Player::Player(const CVector2D& p, bool flip) :
 void Player::StateAttack()
 {
 	//攻撃アニメーションへ変更
+	
 	m_img.ChangeAnimation(eAnimAttack01, false);
 	
-	Base::Add(new Bullet(eType_Player_Bullet,GetScreenPos(m_pos)));
+	Base::Add(new Bullet(eType_Player_Bullet, GetScreenPos(m_pos),4));
 	//3番目のパターンなら
 	/*if (m_img.GetIndex() == 3) {
 		if (m_flip) {
@@ -156,7 +157,7 @@ void Player::Update() {
 	//重力による落下
 	//m_vec.y += GRAVITY;
 	//m_pos += m_vec;
-
+	
 
 	//アニメーション更新
 	m_img.UpdateAnimation();
