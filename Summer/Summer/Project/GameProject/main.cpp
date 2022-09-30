@@ -12,6 +12,7 @@
 #include"Game/AnimData.h"
 #include"Base/Base.h"
 #include"Game/Player.h"
+#include"Game/Enemy.h"
 #include"Game/Map.h"
 
 
@@ -66,10 +67,12 @@ void Init(void)
 	ADD_RESOURCE("players blue x2", CImage::CreateImage("Image/players blue x2.png",player_anim_data,64,64));
 	ADD_RESOURCE("tileset x2", CImage::CreateImage("Image/tileset x2.png"));
 	ADD_RESOURCE("Bullet", CImage::CreateImage("Image/Bullet.png"));
+	ADD_RESOURCE("Enemy.png", CImage::CreateImage("Image/Enemy.png",enemy_anim_data, 58, 43));
 
 
 
 	Base::Add(new Player(CVector2D(200,300),false));
+	Base::Add(new Enemy(CVector2D(200, 300), false));
 	Base::Add(new Map());
 
 
