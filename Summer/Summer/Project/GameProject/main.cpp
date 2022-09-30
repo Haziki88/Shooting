@@ -65,6 +65,7 @@ void Init(void)
 	//-----------------------------------------------------
 	ADD_RESOURCE("players blue x2", CImage::CreateImage("Image/players blue x2.png",player_anim_data,64,64));
 	ADD_RESOURCE("tileset x2", CImage::CreateImage("Image/tileset x2.png"));
+	ADD_RESOURCE("Bullet", CImage::CreateImage("Image/Bullet.png"));
 
 
 
