@@ -60,18 +60,16 @@ Player::Player(const CVector2D& p, bool flip) :
 		m_is_ground = false;
 	}
 
-	//攻撃
-	if (PUSH(CInput::eMouseL)) {
-		//攻撃状態へ移行
+	
 
 	//攻撃
-		if (PUSH(CInput::eMouseL)) {
+		if (PUSH(CInput::eButton1)) {
 			//攻撃状態へ移行
 			m_state = eState_Attack;
 			m_attack_no++;
 		}
 
-	}//ジャンプ中なら
+	//ジャンプ中なら
 	if (!m_is_ground) {
 		if (m_vec.y < 0)
 			//上昇アニメーション
@@ -101,7 +99,7 @@ void Player::StateAttack()
 	//攻撃アニメーションへ変更
 	m_img.ChangeAnimation(eAnimAttack01, false);
 	
-	Base::Add(new Bullet(eType_Player_Bullet, m_pos, 4));
+	Base::Add(new Bullet(eType_Player_Bullet,GetScreenPos(m_pos)));
 	//3番目のパターンなら
 	/*if (m_img.GetIndex() == 3) {
 		if (m_flip) {
@@ -165,7 +163,7 @@ void Player::Update() {
 
 	//スクロール設定
 	m_scroll.x = m_pos.x - 1280 / 2;
-
+	
 }
 
 void Player::Draw() {

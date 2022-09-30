@@ -85,14 +85,13 @@ static TexAnim playerDamageEnd[] = {
 	{ 95,2 },
 };
 static TexAnim playerDeath[] = {
-	{ 96,4 },
-	{ 97,4 },
-	{ 98,8 },
-	{ 99,4 },
-	{ 100,4 },
-	{ 101,4 },
-	{ 102,4 },
-	{ 103,4 },
+	{ 40,4 },
+	{ 41,4 },
+	{ 42,4 },
+	{ 43,6 },
+	{ 44,6 },
+	{ 45,4 },
+	
 };
 
 static TexAnim playerDown[] = {
