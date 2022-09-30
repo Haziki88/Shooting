@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "AnimData.h"
 #include "Field.h"
-#include "Slash.h"
+#include"Bullet.h"
 #include "Effect.h"
 Player::Player(const CVector2D& p, bool flip) :
 	Base(eType_Player) {
@@ -61,11 +61,11 @@ Player::Player(const CVector2D& p, bool flip) :
 	}
 
 	//攻撃
-	if (PUSH(CInput::eButton1)) {
+	if (PUSH(CInput::eMouseL)) {
 		//攻撃状態へ移行
 
 	//攻撃
-		if (PUSH(CInput::eButton1)) {
+		if (PUSH(CInput::eMouseL)) {
 			//攻撃状態へ移行
 			m_state = eState_Attack;
 			m_attack_no++;
@@ -99,21 +99,22 @@ Player::Player(const CVector2D& p, bool flip) :
 void Player::StateAttack()
 {
 	//攻撃アニメーションへ変更
-	/*m_img.ChangeAnimation(eAnimAttack01, false);
+	m_img.ChangeAnimation(eAnimAttack01, false);
+	Base::Add(new Bullet(eType_Player_Bullet, m_pos, m_ang, 4));
 	//3番目のパターンなら
-	if (m_img.GetIndex() == 3) {
+	/*if (m_img.GetIndex() == 3) {
 		if (m_flip) {
 			Base::Add(new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Player_Attack, m_attack_no));
 		}
 		else {
 			Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Player_Attack, m_attack_no));
 		}
-	}
+	}*/
 	//アニメーションが終了したら
 	if (m_img.CheckAnimationEnd()) {
 		//通常状態へ移行
 		m_state = eState_Idle;
-	}*/
+	}
 }
 
 
