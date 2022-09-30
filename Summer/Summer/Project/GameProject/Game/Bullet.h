@@ -5,7 +5,7 @@ class Bullet :public Base {
 	CImage m_img;
 	int m_speed;
 public:
-	Bullet(int type,const CVector2D& pos,  float speed);
+	Bullet(int type,const CVector2D& pos);
 	~Bullet();
 	void Update();
 	void Draw();
