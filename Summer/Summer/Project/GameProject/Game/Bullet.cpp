@@ -12,6 +12,7 @@ Bullet::Bullet(int type,const CVector2D& pos,float speed)
 	}
 	m_pos = pos;
 	m_img.SetCenter(16, 16);
+	m_speed = speed;
 }
 
 Bullet::~Bullet()
@@ -20,7 +21,8 @@ Bullet::~Bullet()
 
 void Bullet::Update()
 {
-	m_pos;
+	
+	m_pos.x+=m_speed;
 }
 
 void Bullet::Draw()

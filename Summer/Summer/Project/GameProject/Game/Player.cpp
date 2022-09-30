@@ -65,6 +65,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	//攻撃
 		if (PUSH(CInput::eButton1)) {
 			//攻撃状態へ移行
+			Base::Add(new Bullet(eType_Player_Bullet, GetScreenPos(m_pos), 4));
 			m_state = eState_Attack;
 			m_attack_no++;
 		}
@@ -100,7 +101,7 @@ void Player::StateAttack()
 	
 	m_img.ChangeAnimation(eAnimAttack01, false);
 	
-	Base::Add(new Bullet(eType_Player_Bullet, GetScreenPos(m_pos),4));
+	
 	//3番目のパターンなら
 	/*if (m_img.GetIndex() == 3) {
 		if (m_flip) {
@@ -151,6 +152,7 @@ void Player::Update() {
 		StateDown();
 		break;
 	}
+	
 	//落ちていたら落下中状態へ移行
 	if (m_is_ground && m_vec.y > GRAVITY * 4)
 		m_is_ground = false;
