@@ -1,7 +1,7 @@
 #include "Bullet.h"
 #include"Map.h"
 
-Bullet::Bullet(int type,const CVector2D& pos,  float speed)
+Bullet::Bullet(int type,const CVector2D& pos)
 	:Base(type)
 {
 	if (type == eType_Player_Bullet) {
@@ -12,7 +12,6 @@ Bullet::Bullet(int type,const CVector2D& pos,  float speed)
 	}
 	m_pos = pos;
 	m_img.SetCenter(16, 16);
-	m_speed = speed;
 }
 
 Bullet::~Bullet()
@@ -21,7 +20,8 @@ Bullet::~Bullet()
 
 void Bullet::Update()
 {
-	m_pos.x -= m_speed;
+	const int move_speed=4;
+	m_pos.x -= move_speed;
 }
 
 void Bullet::Draw()
