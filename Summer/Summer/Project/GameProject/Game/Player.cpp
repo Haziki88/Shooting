@@ -63,12 +63,12 @@ Player::Player(const CVector2D& p, bool flip) :
 	
 
 	//UŒ‚
-		if (PUSH(CInput::eButton1)) {
+	if (PUSH(CInput::eButton1)) {
 			//UŒ‚ó‘Ô‚ÖˆÚs
-			Base::Add(new Bullet(eType_Player_Bullet, GetScreenPos(m_pos), 4));
 			m_state = eState_Attack;
 			m_attack_no++;
-		}
+			Base::Add(new Bullet(eType_Player_Bullet, m_flip, m_pos, 4));
+	}
 
 	//ƒWƒƒƒ“ƒv’†‚È‚ç
 	if (!m_is_ground) {
