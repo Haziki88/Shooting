@@ -9,6 +9,7 @@ private:
 		eState_Attack,
 		eState_Damage,
 		eState_Down,
+		eState_ReLoad,
 	};
 	//ó‘Ô•Ï”
 	int m_state;
@@ -23,6 +24,8 @@ private:
 	int m_damage_no;
 
 	int m_hp;
+	int m_count;
+	int m_bullet;
 
 	//‹éŒ`
 	
@@ -31,6 +34,7 @@ private:
 	void StateAttack();
 	void StateDamage();
 	void StateDown();
+	void StateReLoad();
 
 public:
 	Player(const CVector2D& p, bool flip);
