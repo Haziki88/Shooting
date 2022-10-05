@@ -14,6 +14,8 @@
 #include"Game/Player.h"
 #include"Game/Enemy.h"
 #include"Game/Map.h"
+#include"Game/Item.h"
+#include"Game/Bomb.h"
 
 
 void MainLoop(void) {
@@ -69,11 +71,14 @@ void Init(void)
 	ADD_RESOURCE("tileset x2", CImage::CreateImage("Image/tileset x2.png"));
 	ADD_RESOURCE("Bullet", CImage::CreateImage("Image/Bullet.png"));
 	ADD_RESOURCE("Enemy.png", CImage::CreateImage("Image/Enemy.png",enemy_anim_data, 58, 43));
-
+	ADD_RESOURCE("Item", CImage::CreateImage("Image/Item.png"));
+	ADD_RESOURCE("Bomb", CImage::CreateImage("Image/Bomb.png"));
 
 
 	Base::Add(new Player(CVector2D(200,300),false));
 	Base::Add(new Enemy(CVector2D(200, 300), false));
+	Base::Add(new Item(CVector2D(500, 300)));
+	Base::Add(new Bomb(CVector2D(400, 300)));
 	Base::Add(new Map());
 
 
