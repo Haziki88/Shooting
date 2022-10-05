@@ -28,6 +28,7 @@ enum  {
 	eAnimExtAttack02,
 	eAnimExtAttack02End,
 	eAnimStep,
+	eAnimReLoad,
 };
 
 //プレイヤーのアニメーションデータ

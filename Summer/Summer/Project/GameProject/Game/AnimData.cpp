@@ -95,11 +95,13 @@ static TexAnim playerDeath[] = {
 };
 
 static TexAnim playerDown[] = {
-	{ 104,4 },
-	{ 105,4 },
-	{ 106,4 },
-	{ 107,4 },
-	{ 108,4 },
+	{ 40,4 },
+	{ 41,4 },
+	{ 42,4 },
+	{ 43,6 },
+	{ 44,6 },
+	{ 45,4 },
+
 };
 static TexAnim playerDownGround[] = {
 	{ 109,4 },
@@ -171,6 +173,14 @@ static TexAnim playerStep[] = {
 	{ 121,4 },
 	{ 122,4 },
 };
+static TexAnim playerReLoad[] = {
+	{ 16,6 },
+	{ 17,6 },
+	{ 18,6 },
+	{ 19,6 },
+	{ 20,6 },
+
+};
 TexAnimData player_anim_data[] = {
 	ANIMDATA(playerIdle),
 	ANIMDATA(playerRun),
@@ -197,6 +207,7 @@ TexAnimData player_anim_data[] = {
 	ANIMDATA(playerExtAttack02),
 	ANIMDATA(playerExtAttack02End),
 	ANIMDATA(playerStep),
+	ANIMDATA(playerReLoad),
 };
 
 static TexAnim enemyIdle[] = {

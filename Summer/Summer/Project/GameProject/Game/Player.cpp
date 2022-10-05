@@ -13,7 +13,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	m_pos = p;
 	//中心位置設定
 	m_img.SetCenter(32, 64);
-	//m_rect = CRect(-12, -32, 12, 0);
+	m_rect = CRect(-12, -32, 12, 0);
 	//反転フラグ
 	
 	//通常状態へ
@@ -26,6 +26,8 @@ Player::Player(const CVector2D& p, bool flip) :
 	m_damage_no = -1;
 	//
 	m_hp = 100;
+	m_count = 6;
+	m_bullet = m_count;
 	
 
 
@@ -59,6 +61,10 @@ Player::Player(const CVector2D& p, bool flip) :
 		m_vec.y = -jump_pow;
 		m_is_ground = false;
 	}
+	//リロード
+	if (m_count < m_bullet && PUSH(CInput::eButton6)) {
+		m_state=eState_ReLoad;
+	}
 
 	
 
@@ -68,17 +74,21 @@ Player::Player(const CVector2D& p, bool flip) :
 			m_state = eState_Attack;
 			m_attack_no++;
 			Base::Add(new Bullet(eType_Player_Bullet, m_flip, m_pos, 4));
+			m_count--;
+			if (m_count <= 0) {
+				m_state = eState_ReLoad;
+			}
 	}
 
 	//ジャンプ中なら
-	if (!m_is_ground) {
+	/*if (!m_is_ground) {
 		if (m_vec.y < 0)
 			//上昇アニメーション
 			m_img.ChangeAnimation(eAnimJumpUp, false);
 		else
 			//下降アニメーション
 			m_img.ChangeAnimation(eAnimJumpDown, false);
-	}
+	}*/
 	//移動中なら
 	else
 	{
@@ -128,9 +138,17 @@ void Player::StateDamage()
 }
 void Player::StateDown()
 {
-	//m_img.ChangeAnimation(eAnimDown, false);
+	m_img.ChangeAnimation(eAnimDown, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_kill = true;
+	}
+}
+void Player::StateReLoad()
+{
+	m_img.ChangeAnimation(eAnimReLoad, false);
+	if (m_img.CheckAnimationEnd()) {
+		m_count = 6;
+		m_state = eState_Idle;
 	}
 }
 void Player::Update() {
@@ -150,6 +168,9 @@ void Player::Update() {
 		//ダウン状態
 	case eState_Down:
 		StateDown();
+		break;
+	case eState_ReLoad:
+		StateReLoad();
 		break;
 	}
 	
