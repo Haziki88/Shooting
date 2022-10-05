@@ -147,7 +147,7 @@ void Player::StateReLoad()
 {
 	m_img.ChangeAnimation(eAnimReLoad, false);
 	if (m_img.CheckAnimationEnd()) {
-		m_count = 6;
+		m_count = m_bullet;
 		m_state = eState_Idle;
 	}
 }
@@ -244,6 +244,18 @@ void Player::Collision(Base* b)
 			}
 		}
 		break;
+		/*if (Map* m = dynamic_cast<Map*>(b)) {
+			int t = m->CollisionMap(CVector2D(m_pos.x, m_pos_old.y));
+			if (t != 0)
+				m_pos.x = m_pos_old.x;
+			t = m->CollisionMap(CVector2D(m_pos_old.x, m_pos.y));
+			if (t != 0) {
+				m_pos.y = m_pos_old.y;
+				m_vec.y = 0;
+				m_is_ground = true;
+			}
+		}
+		break;*/
 	}
 
 }
