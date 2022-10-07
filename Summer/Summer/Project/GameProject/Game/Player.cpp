@@ -3,6 +3,7 @@
 #include "Field.h"
 #include"Bullet.h"
 #include "Effect.h"
+#include"Bomb.h"
 Player::Player(const CVector2D& p, bool flip) :
 	Base(eType_Player) {
 	//‰æ‘œ•¡»
@@ -82,6 +83,11 @@ Player::Player(const CVector2D& p, bool flip) :
 			if (m_count <= 0) {
 				m_state = eState_ReLoad;
 			}
+	}
+	if (m_countb > 0 && PUSH(CInput::eButton7)) {
+			m_attack_no++;
+			Base::Add(new Bomb(m_flip,m_pos));
+		
 	}
 
 	//ƒWƒƒƒ“ƒv’†‚È‚ç

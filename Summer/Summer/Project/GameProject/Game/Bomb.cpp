@@ -1,6 +1,6 @@
 #include "Bomb.h"
 
-Bomb::Bomb(const CVector2D& pos):Base(eType_Bomb)
+Bomb::Bomb(bool flip,const CVector2D& pos):Base(eType_Bomb)
 {
 	m_img = COPY_RESOURCE("Bomb", CImage);
 	m_pos = pos;
