@@ -1,4 +1,5 @@
 #include "Bomb.h"
+#include"Explosion.h"
 
 Bomb::Bomb(bool flip,const CVector2D& pos):Base(eType_Bomb)
 {
@@ -19,6 +20,7 @@ void Bomb::Update()
 		if (m_time >= 30) {
 			SetKill();
 			m_time = 0;
+			Base::Add(new Explosion(m_pos + CVector2D(-64, -40), m_flip, eType_Player_Attack));
 		}
 	}
 	else {
@@ -26,6 +28,7 @@ void Bomb::Update()
 		if (m_time >= 30) {
 			SetKill();
 			m_time = 0;
+			Base::Add(new Explosion(m_pos + CVector2D(64, -40), m_flip, eType_Player_Attack));
 		}
 	}
 	

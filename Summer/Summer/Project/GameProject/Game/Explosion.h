@@ -10,7 +10,7 @@ private:
 	//çUåÇî‘çÜ
 	int m_attack_no;
 public:
-	Explosion(const CVector2D& pos, bool flip, int type, int attack_no);
+	Explosion(const CVector2D& pos, bool flip, int type);
 	void Update();
 	void Draw();
 	int GetAttackNo() {

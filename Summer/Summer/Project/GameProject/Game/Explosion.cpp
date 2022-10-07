@@ -1,6 +1,6 @@
 #include "Explosion.h"
 
-Explosion::Explosion(const CVector2D& pos, bool flip, int type, int attack_no)
+Explosion::Explosion(const CVector2D& pos, bool flip, int type)
 	:Base(eType_Explosion)
 {
 	//画像複製
@@ -18,7 +18,7 @@ Explosion::Explosion(const CVector2D& pos, bool flip, int type, int attack_no)
 	//再生アニメーション設定(非ループ)
 	m_img.ChangeAnimation(0, false);
 	//攻撃番号
-	m_attack_no = attack_no;
+	
 }
 
 void Explosion::Update()
@@ -37,4 +37,5 @@ void Explosion::Draw()
 	m_img.SetPos(GetScreenPos(m_pos));
 	m_img.SetFlipH(m_flip);
 	m_img.Draw();
+	//DrawRect();
 }
