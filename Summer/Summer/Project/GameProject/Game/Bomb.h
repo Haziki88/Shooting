@@ -4,7 +4,7 @@ class Bomb :public Base {
 public:
 	CImage m_img;
 public:
-	Bomb(const CVector2D& pos);
+	Bomb(bool flip,const CVector2D& pos);
 	void Update();
 	void Draw();
 };
