@@ -8,6 +8,7 @@ enum {
 	eType_Goal,
 	eType_Item,
 	eType_Bomb,
+	eType_Bomb2,
 	eType_Explosion,
 	eType_Player_Attack,
 	eType_Enemy_Attack,

@@ -34,6 +34,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	//”š’e‚Ì‚Á‚Ä‚¢‚é”
 	m_countb = 0;
 	
+	
 
 
 }void Player::StateIdle()
@@ -84,9 +85,10 @@ Player::Player(const CVector2D& p, bool flip) :
 				m_state = eState_ReLoad;
 			}
 	}
-	if (m_countb > 0 && PUSH(CInput::eButton7)) {
+	if (PUSH(CInput::eButton7)) {
 			m_attack_no++;
 			Base::Add(new Bomb(m_flip,m_pos));
+			m_countb--;
 		
 	}
 
@@ -223,7 +225,7 @@ void Player::Collision(Base* b)
 			b->SetKill();
 		}
 		break;
-	case eType_Bomb:
+	case eType_Bomb2:
 		if (Base::CollisionRect(this, b)) {
 			m_countb++;
 			b->SetKill();
