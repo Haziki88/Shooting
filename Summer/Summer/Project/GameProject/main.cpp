@@ -74,6 +74,7 @@ void Init(void)
 	ADD_RESOURCE("Enemy.png", CImage::CreateImage("Image/Enemy.png",enemy_anim_data, 58, 43));
 	ADD_RESOURCE("Item", CImage::CreateImage("Image/Item.png"));
 	ADD_RESOURCE("Bomb", CImage::CreateImage("Image/Bomb.png"));
+	ADD_RESOURCE("explosion-3", CImage::CreateImage("Image/explosion-3.png",effect_bomb_anim_data,128,80));
 
 
 	Base::Add(new Player(CVector2D(200,300),false));
