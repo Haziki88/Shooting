@@ -3,6 +3,7 @@
 #include "Field.h"
 #include"Bullet.h"
 #include "Effect.h"
+#include"Bomb.h"
 Player::Player(const CVector2D& p, bool flip) :
 	Base(eType_Player) {
 	//‰æ‘œ•¡»
@@ -32,6 +33,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	m_bullet = m_count;
 	//”š’e‚Ì‚Á‚Ä‚¢‚é”
 	m_countb = 0;
+	
 	
 
 
@@ -82,6 +84,12 @@ Player::Player(const CVector2D& p, bool flip) :
 			if (m_count <= 0) {
 				m_state = eState_ReLoad;
 			}
+	}
+	if (PUSH(CInput::eButton7)) {
+			m_attack_no++;
+			Base::Add(new Bomb(m_flip,m_pos));
+			m_countb--;
+		
 	}
 
 	//ƒWƒƒƒ“ƒv’†‚È‚ç
@@ -217,7 +225,7 @@ void Player::Collision(Base* b)
 			b->SetKill();
 		}
 		break;
-	case eType_Bomb:
+	case eType_Bomb2:
 		if (Base::CollisionRect(this, b)) {
 			m_countb++;
 			b->SetKill();

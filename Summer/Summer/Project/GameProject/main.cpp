@@ -45,6 +45,7 @@ void Init(void)
 	CInput::SetButton(0, CInput::eButton4, 'V');
 	CInput::SetButton(0, CInput::eButton5, VK_SPACE);
 	CInput::SetButton(0, CInput::eButton6, 'R');
+	CInput::SetButton(0, CInput::eButton7, 'E');
 	CInput::SetButton(0, CInput::eButton10, VK_RETURN);
 	CInput::SetButton(0, CInput::eUp, VK_UP);
 	CInput::SetButton(0, CInput::eDown, VK_DOWN);
@@ -73,12 +74,12 @@ void Init(void)
 	ADD_RESOURCE("Enemy.png", CImage::CreateImage("Image/Enemy.png",enemy_anim_data, 58, 43));
 	ADD_RESOURCE("Item", CImage::CreateImage("Image/Item.png"));
 	ADD_RESOURCE("Bomb", CImage::CreateImage("Image/Bomb.png"));
+	ADD_RESOURCE("explosion-3", CImage::CreateImage("Image/explosion-3.png",effect_bomb_anim_data,128,80));
 
 
 	Base::Add(new Player(CVector2D(200,300),false));
 	Base::Add(new Enemy(CVector2D(200, 300), false));
 	Base::Add(new Item(CVector2D(500, 300)));
-	Base::Add(new Bomb(CVector2D(400, 300)));
 	Base::Add(new Map());
 
 

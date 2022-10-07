@@ -403,9 +403,14 @@ static TexAnim _effect_bomb[] = {
 	{ 2,2 },
 	{ 3,2 },
 	{ 4,2 },
+	{ 5,2 },
+	{ 6,2 },
+	{ 7,2 },
+	{ 8,2 },
+	{ 9,2 },
 };
 TexAnimData effect_bomb_anim_data[] = {
-	ANIMDATA(_effect_smoke),
+	ANIMDATA(_effect_bomb),
 };
 static TexAnim _effect_slash[] = {
 	{ 0,4 },

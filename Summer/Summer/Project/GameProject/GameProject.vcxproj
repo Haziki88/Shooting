@@ -14,8 +14,10 @@
     <ClCompile Include="Base\Base.cpp" />
     <ClCompile Include="Game\AnimData.cpp" />
     <ClCompile Include="Game\Bomb.cpp" />
+    <ClCompile Include="Game\Bomb2.cpp" />
     <ClCompile Include="Game\Bullet.cpp" />
     <ClCompile Include="Game\Enemy.cpp" />
+    <ClCompile Include="Game\Explosion.cpp" />
     <ClCompile Include="Game\Item.cpp" />
     <ClCompile Include="Game\Map.cpp" />
     <ClCompile Include="Game\Player.cpp" />
@@ -25,8 +27,10 @@
     <ClInclude Include="Base\Base.h" />
     <ClInclude Include="Game\AnimData.h" />
     <ClInclude Include="Game\Bomb.h" />
+    <ClInclude Include="Game\Bomb2.h" />
     <ClInclude Include="Game\Bullet.h" />
     <ClInclude Include="Game\Enemy.h" />
+    <ClInclude Include="Game\Explosion.h" />
     <ClInclude Include="Game\Item.h" />
     <ClInclude Include="Game\Map.h" />
     <ClInclude Include="Game\Player.h" />

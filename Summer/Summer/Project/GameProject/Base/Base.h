@@ -8,6 +8,8 @@ enum {
 	eType_Goal,
 	eType_Item,
 	eType_Bomb,
+	eType_Bomb2,
+	eType_Explosion,
 	eType_Player_Attack,
 	eType_Enemy_Attack,
 	eType_Player_Bullet,
@@ -26,6 +28,8 @@ public:
 	int m_type;
 	//座標データ
 	CVector2D m_pos;
+	//移動前の座標
+	CVector2D m_pos_old;
 	//半径
 	float m_rad;
 	//移動ベクトル
