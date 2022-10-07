@@ -26,6 +26,7 @@ private:
 	int m_hp;
 	int m_count;
 	int m_bullet;
+	int m_countb;
 
 	//‹éŒ`
 	

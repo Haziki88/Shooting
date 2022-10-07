@@ -24,10 +24,14 @@ Player::Player(const CVector2D& p, bool flip) :
 	m_attack_no = rand();
 	//ダメージ番号
 	m_damage_no = -1;
-	//
+	//体力
 	m_hp = 100;
+	//残弾数
 	m_count = 6;
+	//弾の上限
 	m_bullet = m_count;
+	//爆弾の持っている数
+	m_countb = 0;
 	
 
 
@@ -206,6 +210,17 @@ void Player::Collision(Base* b)
 	case eType_Goal:
 		if (Base::CollisionRect(this, b)) {
 			SetKill();
+		}
+		break;
+	case eType_Item:
+		if (Base::CollisionRect(this, b)) {
+			b->SetKill();
+		}
+		break;
+	case eType_Bomb:
+		if (Base::CollisionRect(this, b)) {
+			m_countb++;
+			b->SetKill();
 		}
 		break;
 		//攻撃エフェクトとの判定

@@ -1,10 +1,10 @@
 #pragma once
 #include"../Base/Base.h"
-class Item :public Base {
+class Bomb :public Base {
 public:
 	CImage m_img;
 public:
-	Item(const CVector2D& pos);
+	Bomb(const CVector2D& pos);
 	void Update();
 	void Draw();
 };
