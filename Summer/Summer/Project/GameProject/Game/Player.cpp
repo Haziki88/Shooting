@@ -11,7 +11,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	//再生アニメーション設定
 	m_img.ChangeAnimation(0);
 	//座標設定
-	m_pos = p;
+	m_pos_old=m_pos = p;
 	//中心位置設定
 	m_img.SetCenter(32, 64);
 	m_rect = CRect(-12, -32, 12, 0);
