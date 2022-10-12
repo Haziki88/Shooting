@@ -38,6 +38,7 @@ private:
 	void StateReLoad();
 
 public:
+	
 	Player(const CVector2D& p, bool flip);
 	void Update();
 	void Draw();
