@@ -33,7 +33,7 @@ Enemy::Enemy(const CVector2D& p, bool flip) :
 }void Enemy::StateIdle()
 {
 	//移動量
-	const float move_speed = 4;
+	const float move_speed = 6;
 	//移動フラグ
 	bool move_flag = false;
 	//ジャンプ力
@@ -43,7 +43,7 @@ Enemy::Enemy(const CVector2D& p, bool flip) :
 
 	if (player) {
 		//左移動
-		if (player->m_pos.x < m_pos.x - 64) {
+		if (player->m_pos.x < m_pos.x - 4) {
 			//移動量を設定
 			m_pos.x += -move_speed;
 			//反転フラグ
@@ -52,13 +52,31 @@ Enemy::Enemy(const CVector2D& p, bool flip) :
 		}
 		else
 			//右移動
-			if (player->m_pos.x > m_pos.x + 64) {
+			if (player->m_pos.x > m_pos.x + 4) {
 				//移動量を設定
 				m_pos.x += move_speed;
 				//反転フラグ
 				m_flip = false;
 				move_flag = true;
 			}
+			else
+				//上移動
+				if (player->m_pos.y < m_pos.y - 4) {
+					//移動量を設定
+					m_pos.y += -move_speed;
+					//反転フラグ
+					m_flip = false;
+					move_flag = true;
+				}
+				else
+					//右移動
+					if (player->m_pos.y > m_pos.y + 4) {
+						//移動量を設定
+						m_pos.y += move_speed;
+						//反転フラグ
+						m_flip = false;
+						move_flag = true;
+					}
 			else {
 				//攻撃状態へ移行
 				m_state = eState_Attack;
