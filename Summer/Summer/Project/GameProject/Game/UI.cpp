@@ -1,4 +1,5 @@
 #include "UI.h"
+#include"Player.h"
 
 UI::UI()
 	:Base(eType_UI)
@@ -8,11 +9,11 @@ UI::UI()
 
 void UI::Draw()
 {
-	/*for (int i = 10; i > 0; i--) {
-		
-	}*/
-	m_img.SetRect(0,32,32,32+31);
-	m_img.SetSize(64, 63);
-	m_img.SetPos(0,0);
-	m_img.Draw();
+	//for (int i = 10; i > 0; hp/=10 ) {
+		//int h = hp % 10;
+		m_img.SetRect(64 * 10, 0, 64 * 10 + 64, 64);
+		m_img.SetSize(64, 64);
+		m_img.SetPos(0, 0);
+		m_img.Draw();
+	//}
 }
