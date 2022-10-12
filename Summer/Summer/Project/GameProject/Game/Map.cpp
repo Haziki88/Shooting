@@ -52,7 +52,7 @@ void Map::Draw()
 			m_img.Draw();
 		}
 	}
-
+	glFlush();
 }
 int Map::GetTip(const CVector2D& pos)
 {
