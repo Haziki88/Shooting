@@ -16,6 +16,7 @@
 #include"Game/Map.h"
 #include"Game/Item.h"
 #include"Game/Bomb.h"
+#include"Game/UI.h"
 
 
 void MainLoop(void) {
@@ -75,11 +76,13 @@ void Init(void)
 	ADD_RESOURCE("Item", CImage::CreateImage("Image/Item.png"));
 	ADD_RESOURCE("Bomb", CImage::CreateImage("Image/Bomb.png"));
 	ADD_RESOURCE("explosion-3", CImage::CreateImage("Image/explosion-3.png",effect_bomb_anim_data,128,80));
+	//ADD_RESOURCE("ui x2", CImage::CreateImage("Image/ui x2.png"));
 
 
 	Base::Add(new Player(CVector2D(200,300),false));
 	Base::Add(new Enemy(CVector2D(200, 300), false));
 	Base::Add(new Item(CVector2D(500, 300)));
+	Base::Add(new UI());
 	Base::Add(new Map());
 
 
