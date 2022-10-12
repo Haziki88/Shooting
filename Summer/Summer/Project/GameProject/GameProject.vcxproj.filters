@@ -20,6 +20,21 @@
     <ClCompile Include="Game\Bullet.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Item.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Bomb.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Explosion.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Bomb2.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -49,6 +64,21 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Game\Bullet.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Item.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Bomb.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Explosion.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Bomb2.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UI.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>

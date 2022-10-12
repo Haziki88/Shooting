@@ -95,11 +95,13 @@ static TexAnim playerDeath[] = {
 };
 
 static TexAnim playerDown[] = {
-	{ 104,4 },
-	{ 105,4 },
-	{ 106,4 },
-	{ 107,4 },
-	{ 108,4 },
+	{ 40,4 },
+	{ 41,4 },
+	{ 42,4 },
+	{ 43,6 },
+	{ 44,6 },
+	{ 45,4 },
+
 };
 static TexAnim playerDownGround[] = {
 	{ 109,4 },
@@ -171,6 +173,14 @@ static TexAnim playerStep[] = {
 	{ 121,4 },
 	{ 122,4 },
 };
+static TexAnim playerReLoad[] = {
+	{ 16,6 },
+	{ 17,6 },
+	{ 18,6 },
+	{ 19,6 },
+	{ 20,6 },
+
+};
 TexAnimData player_anim_data[] = {
 	ANIMDATA(playerIdle),
 	ANIMDATA(playerRun),
@@ -197,6 +207,7 @@ TexAnimData player_anim_data[] = {
 	ANIMDATA(playerExtAttack02),
 	ANIMDATA(playerExtAttack02End),
 	ANIMDATA(playerStep),
+	ANIMDATA(playerReLoad),
 };
 
 static TexAnim enemyIdle[] = {
@@ -212,26 +223,26 @@ static TexAnim enemyIdle[] = {
 	{ 9,2 },
 	{ 10,2 },
 	{ 11,2 },
-	{ 12,2 },
-	{ 13,2 },
-	{ 14,2 },
+	//{ 12,2 },
+	//{ 13,2 },
+	//{ 14,2 },
 };
 static TexAnim enemyRun[] = {
-	{ 16,2 },
-	{ 17,2 },
-	{ 18,2 },
-	{ 19,2 },
-	{ 20,2 },
-	{ 21,2 },
-	{ 22,2 },
-	{ 23,2 },
-	{ 24,2 },
-	{ 25,2 },
-	{ 26,2 },
-	{ 27,2 },
-	{ 28,2 },
-	{ 29,2 },
-	{ 30,2 },
+	{ 0,2 },
+	{ 1,2 },
+	{ 2,2 },
+	{ 3,2 },
+	{ 4,2 },
+	{ 5,2 },
+	{ 6,2 },
+	{ 7,2 },
+	{ 8,2 },
+	{ 9,2 },
+	{ 10,2 },
+	{ 11,2 },
+	//{ 28,2 },
+	//{ 29,2 },
+	//{ 30,2 },
 };
 static TexAnim enemyJumpUp[] = {
 	{ 0,0 },
@@ -241,14 +252,15 @@ static TexAnim enemyJumpDown[] = {
 };
 
 static TexAnim enemyAttack01[] = {
-	{ 40,4 },
-	{ 41,4 },
-	{ 42,4 },
-	{ 43,8 },
-	{ 44,2 },
-	{ 45,3 },
-	{ 46,3 },
-	{ 47,3 },
+	{ 12,4 },
+	{ 13,4 },
+	{ 14,4 },
+	{ 15,5 },
+	{ 16,6 },
+	{ 17,5 },
+	{ 18,4 },
+	{ 19,3 },
+	{ 20,2 },
 };
 static TexAnim enemyAttack01End[] = {
 	{ 48,2 },
@@ -391,9 +403,14 @@ static TexAnim _effect_bomb[] = {
 	{ 2,2 },
 	{ 3,2 },
 	{ 4,2 },
+	{ 5,2 },
+	{ 6,2 },
+	{ 7,2 },
+	{ 8,2 },
+	{ 9,2 },
 };
 TexAnimData effect_bomb_anim_data[] = {
-	ANIMDATA(_effect_smoke),
+	ANIMDATA(_effect_bomb),
 };
 static TexAnim _effect_slash[] = {
 	{ 0,4 },

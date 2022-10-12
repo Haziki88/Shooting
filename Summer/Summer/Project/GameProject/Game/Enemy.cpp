@@ -17,7 +17,7 @@ Enemy::Enemy(const CVector2D& p, bool flip) :
 	//中心位置設定
 	m_img.SetCenter(32, 64);
 	//当たり判定用矩形設定
-	m_rect = CRect(-32, -64, 32, 0);
+	m_rect = CRect(-30, -64, 0, -20);
 	//反転フラグ
 	m_flip = flip;
 	//通常状態へ
@@ -33,7 +33,7 @@ Enemy::Enemy(const CVector2D& p, bool flip) :
 }void Enemy::StateIdle()
 {
 	//移動量
-	const float move_speed = 6;
+	const float move_speed = 4;
 	//移動フラグ
 	bool move_flag = false;
 	//ジャンプ力
@@ -108,6 +108,11 @@ void Enemy::StateAttack()
 {
 	//攻撃アニメーションへ変更
 	m_img.ChangeAnimation(eAnimAttack01, false);
+	if (m_flip) {
+		m_rect = CRect(-50, -64, 0,-20);
+	}else{
+		m_rect = CRect(-30, -64, 20, -20);
+		}
 	//3番目のパターンなら
 	/*if (m_img.GetIndex() == 3) {
 		if (m_flip) {
@@ -121,6 +126,7 @@ void Enemy::StateAttack()
 	if (m_img.CheckAnimationEnd()) {
 		//通常状態へ移行
 		m_state = eState_Wait;
+		m_rect = CRect(-30, -64, 0, -20);
 	}
 
 }
@@ -175,7 +181,11 @@ void Enemy::Update() {
 
 void Enemy::Draw() {
 	//位置設定
-	m_img.SetPos(GetScreenPos(m_pos));
+	if (m_flip) {
+		m_img.SetPos(GetScreenPos(m_pos) + CVector2D(-32, 0));
+	}else{
+		m_img.SetPos(GetScreenPos(m_pos) + CVector2D(0, 0));
+		}
 	//反転設定
 	m_img.SetFlipH(m_flip);
 	//描画

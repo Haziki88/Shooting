@@ -3,6 +3,7 @@
 #include "Field.h"
 #include"Bullet.h"
 #include "Effect.h"
+#include"Bomb.h"
 Player::Player(const CVector2D& p, bool flip) :
 	Base(eType_Player) {
 	//画像複製
@@ -10,10 +11,10 @@ Player::Player(const CVector2D& p, bool flip) :
 	//再生アニメーション設定
 	m_img.ChangeAnimation(0);
 	//座標設定
-	m_pos = p;
+	m_pos_old=m_pos = p;
 	//中心位置設定
 	m_img.SetCenter(32, 64);
-	//m_rect = CRect(-12, -32, 12, 0);
+	m_rect = CRect(-12, -32, 12, 0);
 	//反転フラグ
 	
 	//通常状態へ
@@ -24,8 +25,15 @@ Player::Player(const CVector2D& p, bool flip) :
 	m_attack_no = rand();
 	//ダメージ番号
 	m_damage_no = -1;
-	//
+	//体力
 	m_hp = 100;
+	//残弾数
+	m_count = 6;
+	//弾の上限
+	m_bullet = m_count;
+	//爆弾の持っている数
+	m_countb = 0;
+	
 	
 
 
@@ -75,25 +83,40 @@ Player::Player(const CVector2D& p, bool flip) :
 		m_vec.y = -jump_pow;
 		m_is_ground = false;
 	}
+	//リロード
+	if (m_count < m_bullet && PUSH(CInput::eButton6)) {
+		m_state=eState_ReLoad;
+	}
 
 	
 
 	//攻撃
-		if (PUSH(CInput::eButton1)) {
+	if (PUSH(CInput::eButton1)) {
 			//攻撃状態へ移行
 			m_state = eState_Attack;
 			m_attack_no++;
-		}
+			Base::Add(new Bullet(eType_Player_Bullet, m_flip, m_pos, 4));
+			m_count--;
+			if (m_count <= 0) {
+				m_state = eState_ReLoad;
+			}
+	}
+	if (PUSH(CInput::eButton7)) {
+			m_attack_no++;
+			Base::Add(new Bomb(m_flip,m_pos));
+			m_countb--;
+		
+	}
 
 	//ジャンプ中なら
-	if (!m_is_ground) {
+	/*if (!m_is_ground) {
 		if (m_vec.y < 0)
 			//上昇アニメーション
 			m_img.ChangeAnimation(eAnimJumpUp, false);
 		else
 			//下降アニメーション
 			m_img.ChangeAnimation(eAnimJumpDown, false);
-	}
+	}*/
 	//移動中なら
 	else
 	{
@@ -116,7 +139,7 @@ void Player::StateAttack()
 	
 	m_img.ChangeAnimation(eAnimAttack01, false);
 	
-	Base::Add(new Bullet(eType_Player_Bullet, GetScreenPos(m_pos),4));
+	
 	//3番目のパターンなら
 	/*if (m_img.GetIndex() == 3) {
 		if (m_flip) {
@@ -143,9 +166,17 @@ void Player::StateDamage()
 }
 void Player::StateDown()
 {
-	//m_img.ChangeAnimation(eAnimDown, false);
+	m_img.ChangeAnimation(eAnimDown, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_kill = true;
+	}
+}
+void Player::StateReLoad()
+{
+	m_img.ChangeAnimation(eAnimReLoad, false);
+	if (m_img.CheckAnimationEnd()) {
+		m_count = m_bullet;
+		m_state = eState_Idle;
 	}
 }
 void Player::Update() {
@@ -166,7 +197,11 @@ void Player::Update() {
 	case eState_Down:
 		StateDown();
 		break;
+	case eState_ReLoad:
+		StateReLoad();
+		break;
 	}
+	
 	//落ちていたら落下中状態へ移行
 	if (m_is_ground && m_vec.y > GRAVITY * 4)
 		m_is_ground = false;
@@ -199,6 +234,17 @@ void Player::Collision(Base* b)
 	case eType_Goal:
 		if (Base::CollisionRect(this, b)) {
 			SetKill();
+		}
+		break;
+	case eType_Item:
+		if (Base::CollisionRect(this, b)) {
+			b->SetKill();
+		}
+		break;
+	case eType_Bomb2:
+		if (Base::CollisionRect(this, b)) {
+			m_countb++;
+			b->SetKill();
 		}
 		break;
 		//攻撃エフェクトとの判定
@@ -237,6 +283,18 @@ void Player::Collision(Base* b)
 			}
 		}
 		break;
+		/*if (Map* m = dynamic_cast<Map*>(b)) {
+			int t = m->CollisionMap(CVector2D(m_pos.x, m_pos_old.y));
+			if (t != 0)
+				m_pos.x = m_pos_old.x;
+			t = m->CollisionMap(CVector2D(m_pos_old.x, m_pos.y));
+			if (t != 0) {
+				m_pos.y = m_pos_old.y;
+				m_vec.y = 0;
+				m_is_ground = true;
+			}
+		}
+		break;*/
 	}
 
 }
