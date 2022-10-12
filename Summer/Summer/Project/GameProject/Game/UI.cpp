@@ -11,8 +11,8 @@ void UI::Draw()
 	/*for (int i = 10; i > 0; i--) {
 		
 	}*/
-	m_img.SetRect(0,-32,64,64);
-	m_img.SetSize(64, 64);
-	m_img.SetPos(100,50);
+	m_img.SetRect(0,32,32,32+31);
+	m_img.SetSize(64, 63);
+	m_img.SetPos(0,0);
 	m_img.Draw();
 }
