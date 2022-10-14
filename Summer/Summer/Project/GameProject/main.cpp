@@ -31,7 +31,7 @@ void MainLoop(void) {
 	Base::DrawAll();
 	//‚ä‚­‚ä‚­‚ÍƒQ[ƒ€ƒV[ƒ“‚ÉˆÚ‚·
 	Base* enemy = Base::FindObject(eType_Enemy);
-	if (enemy == nullptr|| (PUSH(CInput::eButton1))) {
+	if (enemy == nullptr/* || (PUSH(CInput::eButton1))*/) {
 		Base* field = Base::FindObject(eType_Field);
 		field->SetKill();
 		stage++;
