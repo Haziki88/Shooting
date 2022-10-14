@@ -95,7 +95,7 @@ void Init(void)
 
 	Base::Add(new Player(CVector2D(200,300),false));
 	Base::Add(new Enemy(CVector2D(200, 300), false));
-	Base::Add(new Item(CVector2D(500, 300)));
+	Base::Add(new Item(eType_Item,CVector2D(500, 300)));
 	Base::Add(new UI());
 	Base::Add(new Map(1));
 

@@ -5,6 +5,7 @@
 #include "Effect.h"
 #include"Bomb.h"
 #include"Enemy.h"
+#include"Map.h"
 
 Player::Player(const CVector2D& p, bool flip) :
 	Base(eType_Player) {
@@ -217,7 +218,7 @@ void Player::Update() {
 
 	//ƒXƒNƒ[ƒ‹İ’è
 	m_scroll.x = m_pos.x - 1280 / 2;
-	
+	m_scroll.y = m_pos.y - 600;
 }
 
 void Player::Draw() {
@@ -240,6 +241,7 @@ void Player::Collision(Base* b)
 		break;
 	case eType_Item:
 		if (Base::CollisionRect(this, b)) {
+			m_hp += 20;
 			b->SetKill();
 		}
 		break;

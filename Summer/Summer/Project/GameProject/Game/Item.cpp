@@ -1,8 +1,14 @@
 #include "Item.h"
 
-Item::Item(const CVector2D& pos):Base(eType_Item)
+Item::Item(int type,const CVector2D& pos):Base(type)
 {
-	m_img = COPY_RESOURCE("Item", CImage);
+	if (type == eType_Item) {
+		m_img = COPY_RESOURCE("Item", CImage);
+	}
+	else {
+
+	}
+	
 	m_pos = pos;
 	m_img.SetSize(24, 24);
 	m_img.SetCenter(12, 12);
