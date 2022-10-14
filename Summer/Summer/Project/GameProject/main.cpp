@@ -88,6 +88,7 @@ void Init(void)
 	ADD_RESOURCE("Bullet", CImage::CreateImage("Image/Bullet.png"));
 	ADD_RESOURCE("Enemy.png", CImage::CreateImage("Image/Enemy.png",enemy_anim_data, 58, 43));
 	ADD_RESOURCE("Item", CImage::CreateImage("Image/Item.png"));
+	ADD_RESOURCE("Item2", CImage::CreateImage("Image/Item2.png"));
 	ADD_RESOURCE("Bomb", CImage::CreateImage("Image/Bomb.png"));
 	ADD_RESOURCE("explosion-3", CImage::CreateImage("Image/explosion-3.png",effect_bomb_anim_data,128,80));
 	//ADD_RESOURCE("ui x2", CImage::CreateImage("Image/ui x2.png"));
@@ -96,6 +97,7 @@ void Init(void)
 	Base::Add(new Player(CVector2D(200,300),false));
 	Base::Add(new Enemy(CVector2D(200, 300), false));
 	Base::Add(new Item(eType_Item,CVector2D(500, 300)));
+	Base::Add(new Item(eType_Item2, CVector2D(700, 300)));
 	Base::Add(new UI());
 	Base::Add(new Map(1));
 
