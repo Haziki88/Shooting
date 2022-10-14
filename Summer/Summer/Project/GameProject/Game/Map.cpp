@@ -58,7 +58,7 @@ Map::Map(int stage)
 	switch (stage) {
 	case 1:
 		Base::Add(new Enemy(CVector2D(200, 300), false));
-		memcpy(m_stagedata, stage2data, sizeof(stage2data));
+		memcpy(m_stagedata, stage1data, sizeof(stage1data));
 		break;
 	case 2:
 		Base::Add(new Enemy(CVector2D(200, 300), false));
