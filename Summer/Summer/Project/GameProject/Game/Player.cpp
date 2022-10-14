@@ -5,10 +5,7 @@
 #include "Effect.h"
 #include"Bomb.h"
 #include"Enemy.h"
-int Player::gethp()
-{
-	return m_hp;
-}
+
 Player::Player(const CVector2D& p, bool flip) :
 	Base(eType_Player) {
 	//画像複製
@@ -255,10 +252,12 @@ void Player::Collision(Base* b)
 	case eType_Enemy:
 		//Enemy* e = dynamic_cast<Enemy*>(b);
 		if ( Base::CollisionRect(this, b)) {
-			m_hp -= 5;
-			/*if (m_hp <= 0) {
-				m_state=eState_Down;
-			}*/
+			if (m_hp > 0) {
+				m_hp -= 5;
+			}
+			else {
+				//m_state=eState_Down;
+			}
 		}
 		//攻撃エフェクトとの判定
 	/*case eType_Enemy_Attack:
@@ -310,6 +309,10 @@ void Player::Collision(Base* b)
 		break;*/
 	}
 
+}
+int Player::gethp()
+{
+	return m_hp;
 }
 
 
