@@ -3,6 +3,8 @@
 #include "Field.h"
 #include "Slash.h"
 #include "Effect.h"
+#include"Item.h"
+#include "Bomb2.h"
 
 Enemy::Enemy(const CVector2D& p, bool flip) :
 	Base(eType_Enemy) {
@@ -28,12 +30,24 @@ Enemy::Enemy(const CVector2D& p, bool flip) :
 	m_attack_no = rand();
 	//ƒ_ƒ[ƒW”Ô†
 	m_attack_no = -1;
-
+	m_rad = 16;
 	m_cnt = 0;
 	
 }
 Enemy::~Enemy() {
-	
+	int r = rand() % 100;
+	if (0 <= r && r < 10) {
+		//10%‚ÅItem
+		Base::Add(new Item(eType_Item, m_pos));
+	}
+	else if (10 <= r && r < 30) {
+		//20%‚ÅItem2
+		Base::Add(new Item(eType_Item2, m_pos));
+	}
+	else if (30 <= r && r < 40) {
+		//10%‚ÅBomb2
+		Base::Add(new Bomb2(m_pos));
+	}
 }
 
 
