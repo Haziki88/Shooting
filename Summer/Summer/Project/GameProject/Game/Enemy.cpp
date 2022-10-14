@@ -22,7 +22,6 @@ Enemy::Enemy(const CVector2D& p, bool flip) :
 	m_flip = flip;
 	//通常状態へ
 	m_state = eState_Idle;
-	m_cnt = 0;
 	//着地フラグ
 	m_is_ground = true;
 	//攻撃番号
@@ -30,7 +29,16 @@ Enemy::Enemy(const CVector2D& p, bool flip) :
 	//ダメージ番号
 	m_attack_no = -1;
 
-}void Enemy::StateIdle()
+	m_cnt = 0;
+	
+}
+Enemy::~Enemy() {
+	
+}
+
+
+
+void Enemy::StateIdle()
 {
 	//移動量
 	const float move_speed = 6;
@@ -186,6 +194,7 @@ void Enemy::Update() {
 		//ダウン状態
 	case eState_Down:
 		StateDown();
+		SetKill();
 		break;
 	}
 
@@ -251,6 +260,7 @@ void Enemy::Collision(Base* b)
 		}
 		break;
 	}
+
 
 }
 

@@ -38,9 +38,15 @@ private:
 	void StateReLoad();
 
 public:
-	int gethp();
+	
 	Player(const CVector2D& p, bool flip);
 	void Update();
 	void Draw();
 	void Collision(Base* b);
+	int gethp() {
+		Base* player = Base::FindObject(eType_Player);
+		if (player) {
+			return m_hp;
+		}	
+	}
 };

@@ -6,7 +6,7 @@ Item::Item(int type,const CVector2D& pos):Base(type)
 		m_img = COPY_RESOURCE("Item", CImage);
 	}
 	else {
-
+		m_img = COPY_RESOURCE("Item2", CImage);
 	}
 	
 	m_pos = pos;

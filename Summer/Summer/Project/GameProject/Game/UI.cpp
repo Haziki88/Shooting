@@ -16,4 +16,5 @@ void UI::Draw()
 	m_img.SetSize(h, 32);
 	m_img.SetPos(0, 0);
 	m_img.Draw();
+	
 }

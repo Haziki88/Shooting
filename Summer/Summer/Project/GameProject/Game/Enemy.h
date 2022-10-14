@@ -35,6 +35,7 @@ private:
 
 public:
 	Enemy(const CVector2D& p, bool flip);
+	~Enemy();
 	void Update();
 	void Draw();
 	void Collision(Base* b);

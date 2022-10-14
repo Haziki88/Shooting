@@ -48,92 +48,93 @@ Player::Player(const CVector2D& p, bool flip) :
 	bool move_flag = false;
 	//ジャンプ力
 	const float jump_pow = 12;
-
-	//左移動
-	if (HOLD(CInput::eLeft)) {
-		//移動量を設定
-		m_pos.x += -move_speed;
-		//反転フラグ
-		m_flip = true;
-		move_flag = true;
-	}
-	//右移動
-	if (HOLD(CInput::eRight)) {
-		//移動量を設定
-		m_pos.x += move_speed;
-		//反転フラグ
-		m_flip = false;
-		move_flag = true;
-	}
-	//上移動
-	if (HOLD(CInput::eUp)) {
-		//移動量を設定
-		m_pos.y+= -move_speed;
-		//反転フラグ
-		m_flip = false;
-		move_flag = true;
-	}
-	//下移動
-	if (HOLD(CInput::eDown)) {
-		//移動量を設定
-		m_pos.y += move_speed;
-		//反転フラグ
-		m_flip = false;
-		move_flag = true;
-	}
-	//ジャンプ
-	if (m_is_ground && PUSH(CInput::eButton2)) {
-		m_vec.y = -jump_pow;
-		m_is_ground = false;
-	}
-	//リロード
-	if (m_count < m_bullet && PUSH(CInput::eButton6)) {
-		m_state=eState_ReLoad;
-	}
+	Base* player = Base::FindObject(eType_Player);
+	if(player){
+		//左移動
+		if (HOLD(CInput::eLeft)) {
+			//移動量を設定
+			m_pos.x += -move_speed;
+			//反転フラグ
+			m_flip = true;
+			move_flag = true;
+		}
+		//右移動
+		if (HOLD(CInput::eRight)) {
+			//移動量を設定
+			m_pos.x += move_speed;
+			//反転フラグ
+			m_flip = false;
+			move_flag = true;
+		}
+		//上移動
+		if (HOLD(CInput::eUp)) {
+			//移動量を設定
+			m_pos.y+= -move_speed;
+			//反転フラグ
+			m_flip = false;
+			move_flag = true;
+		}
+		//下移動
+		if (HOLD(CInput::eDown)) {
+			//移動量を設定
+			m_pos.y += move_speed;
+			//反転フラグ
+			m_flip = false;
+			move_flag = true;
+		}
+		//ジャンプ
+		if (m_is_ground && PUSH(CInput::eButton2)) {
+			m_vec.y = -jump_pow;
+			m_is_ground = false;
+		}
+		//リロード
+		if (m_count < m_bullet && PUSH(CInput::eButton6)) {
+			m_state=eState_ReLoad;
+		}
 
 	
 
-	//攻撃
-	if (PUSH(CInput::eButton1)) {
-			//攻撃状態へ移行
-			m_state = eState_Attack;
-			m_attack_no++;
-			Base::Add(new Bullet(eType_Player_Bullet, m_flip, m_pos, 4));
-			m_count--;
-			if (m_count <= 0) {
-				m_state = eState_ReLoad;
-			}
-	}
-	if (PUSH(CInput::eButton7)) {
-			m_attack_no++;
-			Base::Add(new Bomb(m_flip,m_pos));
-			m_countb--;
+		//攻撃
+		if (PUSH(CInput::eButton1)) {
+				//攻撃状態へ移行
+				m_state = eState_Attack;
+				m_attack_no++;
+				Base::Add(new Bullet(eType_Player_Bullet, m_flip, m_pos, 4));
+				m_count--;
+				if (m_count <= 0) {
+					m_state = eState_ReLoad;
+				}
+		}
+		if (PUSH(CInput::eButton7)) {
+				m_attack_no++;
+				Base::Add(new Bomb(m_flip,m_pos));
+				m_countb--;
 		
-	}
+		}
 
-	//ジャンプ中なら
-	/*if (!m_is_ground) {
-		if (m_vec.y < 0)
-			//上昇アニメーション
-			m_img.ChangeAnimation(eAnimJumpUp, false);
+		//ジャンプ中なら
+		/*if (!m_is_ground) {
+			if (m_vec.y < 0)
+				//上昇アニメーション
+				m_img.ChangeAnimation(eAnimJumpUp, false);
+			else
+				//下降アニメーション
+				m_img.ChangeAnimation(eAnimJumpDown, false);
+		}*/
+		//移動中なら
 		else
-			//下降アニメーション
-			m_img.ChangeAnimation(eAnimJumpDown, false);
-	}*/
-	//移動中なら
-	else
-	{
-		if (move_flag) {
-			//走るアニメーション
-			m_img.ChangeAnimation(eAnimRun);
-		}
-		else {
-			//待機アニメーション
-			m_img.ChangeAnimation(eAnimIdle);
-		}
+		{
+			if (move_flag) {
+				//走るアニメーション
+				m_img.ChangeAnimation(eAnimRun);
+			}
+			else {
+				//待機アニメーション
+				m_img.ChangeAnimation(eAnimIdle);
+			}
 
+		}
 	}
-
 
 }
 void Player::StateAttack()
@@ -242,6 +243,18 @@ void Player::Collision(Base* b)
 	case eType_Item:
 		if (Base::CollisionRect(this, b)) {
 			m_hp += 20;
+			if (m_hp >= 100) {
+				m_hp = 100;
+			}
+			b->SetKill();
+		}
+		break;
+	case eType_Item2:
+		if (Base::CollisionRect(this, b)) {
+			m_hp += 50;
+			if (m_hp >= 100) {
+				m_hp = 100;
+			}
 			b->SetKill();
 		}
 		break;
@@ -258,9 +271,10 @@ void Player::Collision(Base* b)
 				m_hp -= 5;
 			}
 			else {
-				//m_state=eState_Down;
+				m_state=eState_Down;
 			}
 		}
+		break;
 		//攻撃エフェクトとの判定
 	/*case eType_Enemy_Attack:
 		//Slash型へキャスト、型変換できたら
@@ -312,10 +326,7 @@ void Player::Collision(Base* b)
 	}
 
 }
-int Player::gethp()
-{
-	return m_hp;
-}
+
 
 
 
