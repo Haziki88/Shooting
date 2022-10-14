@@ -17,6 +17,7 @@
 #include"Game/Item.h"
 #include"Game/Bomb.h"
 #include"Game/UI.h"
+int stage = 1;
 
 
 void MainLoop(void) {
@@ -28,8 +29,21 @@ void MainLoop(void) {
 	Base::UpdateAll();
 	Base::CollisionAll();
 	Base::DrawAll();
+	//ゆくゆくはゲームシーンに移す
+	Base* enemy = Base::FindObject(eType_Enemy);
+	if (enemy == nullptr|| (PUSH(CInput::eButton1))) {
+		Base* field = Base::FindObject(eType_Field);
+		field->SetKill();
+		stage++;
+		if (stage >= 3) {
+			//ゲームクリアに移行
 
-
+		}
+		else
+		{
+			Base::Add(new Map(stage));
+		}
+	}
 
 }
 void Init(void)
@@ -83,7 +97,7 @@ void Init(void)
 	Base::Add(new Enemy(CVector2D(200, 300), false));
 	Base::Add(new Item(CVector2D(500, 300)));
 	Base::Add(new UI());
-	Base::Add(new Map());
+	Base::Add(new Map(1));
 
 
 }
