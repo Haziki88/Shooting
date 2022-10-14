@@ -7,6 +7,7 @@ enum {
 	eType_Bullet,
 	eType_Goal,
 	eType_Item,
+	eType_Item2,
 	eType_Bomb,
 	eType_Bomb2,
 	eType_Explosion,
