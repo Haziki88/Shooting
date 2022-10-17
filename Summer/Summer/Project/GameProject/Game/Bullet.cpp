@@ -60,7 +60,7 @@ void Bullet::Collision(Base* b)
 		Enemy* e = dynamic_cast<Enemy*>(b);
 		if (m_type == eType_Player_Bullet && Base::CollisionRect(this,b)) {
 			SetKill();
-			e->m_hp - 50;
+			e->m_hp -= 50;
 		}
 		break;
 	}
