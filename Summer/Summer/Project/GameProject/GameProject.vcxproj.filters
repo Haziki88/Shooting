@@ -38,6 +38,12 @@
     <ClCompile Include="..\..\..\..\..\Gameteam\Game1\Game1\Project\GameProject\Game\Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="Gameclear\Gameclear.cpp">
+      <Filter>Gameclear</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameover\Gameover.cpp">
+      <Filter>Gameover</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -48,6 +54,12 @@
     </Filter>
     <Filter Include="Title">
       <UniqueIdentifier>{d68ab0f9-7005-4ee6-bf07-f7c48fb43a26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gameclear">
+      <UniqueIdentifier>{b0b6d77f-b80b-477a-8165-983da73b18f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gameover">
+      <UniqueIdentifier>{f78fd797-4067-4ecd-a9ab-649f0b6c249a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +98,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Gameteam\Game1\Game1\Project\GameProject\Game\Game.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameclear\Gameclear.h">
+      <Filter>Gameclear</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameover\Gameover.h">
+      <Filter>Gameover</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
