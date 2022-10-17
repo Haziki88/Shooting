@@ -23,7 +23,7 @@ private:
 	int m_attack_no;
 	//ダメージ番号
 	int m_damage_no;
-	int m_hp=100;
+	
 
 	//各状態での挙動
 
@@ -39,4 +39,5 @@ public:
 	void Update();
 	void Draw();
 	void Collision(Base* b);
+	int m_hp = 100;
 };

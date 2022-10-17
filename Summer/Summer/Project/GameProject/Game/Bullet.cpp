@@ -1,5 +1,6 @@
 #include "Bullet.h"
 #include"Map.h"
+#include"Enemy.h"
 
 Bullet::Bullet(int type,bool flip,const CVector2D& pos,float speed)
 	:Base(type)
@@ -14,6 +15,7 @@ Bullet::Bullet(int type,bool flip,const CVector2D& pos,float speed)
 	m_img.SetCenter(16, 16);
 	m_speed = speed;
 	m_flip = flip;
+	m_rect = CRect(-8, -8, 8, 8);
 }
 
 Bullet::~Bullet()
@@ -49,15 +51,16 @@ void Bullet::Collision(Base* b)
 		}
 		break;*/
 	case eType_Player:
-		if (m_type == eType_Enemy_Bullet && Base::CollisionCircle(this, b)) {
-			b->SetKill();
+		if (m_type == eType_Enemy_Bullet && Base::CollisionRect(this, b)) {
 			SetKill();
+			b->SetKill();
 		}
 		break;
 	case eType_Enemy:
-		if (m_type == eType_Player_Bullet && Base::CollisionCircle(this,b)) {
-			b->SetKill();
+		Enemy* e = dynamic_cast<Enemy*>(b);
+		if (m_type == eType_Player_Bullet && Base::CollisionRect(this,b)) {
 			SetKill();
+			e->m_hp - 50;
 		}
 		break;
 	}
