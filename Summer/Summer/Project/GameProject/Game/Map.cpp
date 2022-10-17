@@ -57,7 +57,7 @@ Map::Map(int stage)
 	m_img = COPY_RESOURCE("tileset x2", CImage);
 	switch (stage) {
 	case 1:
-		Base::Add(new Enemy(CVector2D(200, 300), false));
+		//Base::Add(new Enemy(CVector2D(200, 300), false));
 		memcpy(m_stagedata, stage1data, sizeof(stage1data));
 		break;
 	case 2:
