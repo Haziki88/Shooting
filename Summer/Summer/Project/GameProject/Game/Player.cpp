@@ -35,7 +35,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	//’e‚ÌãŒÀ
 	m_bullet = m_count;
 	//”š’e‚ÌŽ‚Á‚Ä‚¢‚é”
-	m_countb = 0;
+	m_countb = 1;
 	
 	
 
@@ -105,7 +105,7 @@ Player::Player(const CVector2D& p, bool flip) :
 					m_state = eState_ReLoad;
 				}
 		}
-		if (PUSH(CInput::eButton7)) {
+		if (m_countb>0&&PUSH(CInput::eButton7)) {
 				m_attack_no++;
 				Base::Add(new Bomb(m_flip,m_pos));
 				m_countb--;
