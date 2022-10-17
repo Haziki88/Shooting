@@ -39,5 +39,11 @@ public:
 	void Update();
 	void Draw();
 	void Collision(Base* b);
+	int gethp() {
+		Base* Enemy = Base::FindObject(eType_Enemy);
+		if (Enemy) {
+			return m_hp;
+		}
+	}
 	int m_hp = 100;
 };
