@@ -50,7 +50,7 @@ void Bullet::Collision(Base* b)
 		break;*/
 	case eType_Player:
 		if (m_type == eType_Enemy_Bullet && Base::CollisionCircle(this, b)) {
-
+			b->SetKill();
 			SetKill();
 		}
 		break;
