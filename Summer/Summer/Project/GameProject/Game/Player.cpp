@@ -268,7 +268,7 @@ void Player::Collision(Base* b)
 		//Enemy* e = dynamic_cast<Enemy*>(b);
 		if ( Base::CollisionRect(this, b)) {
 			if (m_hp > 0) {
-				m_hp -= 5;
+				//m_hp -= 5;
 			}
 			else {
 				m_state=eState_Down;
