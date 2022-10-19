@@ -1,5 +1,6 @@
 #include"Map.h"
 #include"Enemy.h"
+#include"Player.h"
 static int stage1data[MAP_HEIGHT][MAP_WIDTH] = {
 	{ 2,5,5,5,5,5,5,5,5,5,5,5,5,5,5,7,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,8},
 	{ 75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,83,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,83},
@@ -57,11 +58,14 @@ Map::Map(int stage)
 	m_img = COPY_RESOURCE("tileset x2", CImage);
 	switch (stage) {
 	case 1:
-		//Base::Add(new Enemy(CVector2D(200, 300), false));
+		Base::Add(new Enemy(CVector2D(250, 300), false));
+		Base::Add(new Player(CVector2D(200, 300), false));
 		memcpy(m_stagedata, stage1data, sizeof(stage1data));
 		break;
 	case 2:
+        
 		Base::Add(new Enemy(CVector2D(200, 300), false));
+		Base::Add(new Player(CVector2D(400, 600), false));
 		memcpy(m_stagedata, stage2data, sizeof(stage2data));
 		break;
 	}
