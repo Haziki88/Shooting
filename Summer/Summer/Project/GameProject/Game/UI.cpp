@@ -16,5 +16,11 @@ void UI::Draw()
 	m_img.SetSize(h, 32);
 	m_img.SetPos(0, 0);
 	m_img.Draw();
+	int b=48*p->getbullet()/9+16;
+	m_img.SetRect(0, 415, b , 427);
+	m_img.SetSize(b, 12);
+	m_img.SetPos(0, 25);
+	m_img.Draw();
+
 	
 }

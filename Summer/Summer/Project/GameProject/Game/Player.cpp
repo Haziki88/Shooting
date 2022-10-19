@@ -47,7 +47,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	//移動フラグ
 	bool move_flag = false;
 	//ジャンプ力
-	const float jump_pow = 12;
+	const float jump_pow = 10;
 	Base* player = Base::FindObject(eType_Player);
 	if(player){
 		//左移動
@@ -83,7 +83,7 @@ Player::Player(const CVector2D& p, bool flip) :
 			move_flag = true;
 		}
 		//ジャンプ
-		if (m_is_ground && PUSH(CInput::eButton2)) {
+		if (m_is_ground && PUSH(CInput::eButton5)) {
 			m_vec.y = -jump_pow;
 			m_is_ground = false;
 		}
@@ -101,7 +101,7 @@ Player::Player(const CVector2D& p, bool flip) :
 				m_attack_no++;
 				Base::Add(new Bullet(eType_Player_Bullet, m_flip, m_pos, 4,m_attack_no));
 				m_count--;
-				if (m_count <= 0) {
+				if (m_count < 0) {
 					m_state = eState_ReLoad;
 				}
 		}
