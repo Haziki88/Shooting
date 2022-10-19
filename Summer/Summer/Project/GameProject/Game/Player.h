@@ -49,4 +49,10 @@ public:
 			return m_hp;
 		}	
 	}
+	int getbullet() {
+		Base* player = Base::FindObject(eType_Player);
+		if (player) {
+			return m_count;
+		}
+	}
 };

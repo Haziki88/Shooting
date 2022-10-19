@@ -1,5 +1,6 @@
 #include "Bomb.h"
 #include"Explosion.h"
+#include"Map.h"
 
 Bomb::Bomb(bool flip,const CVector2D& pos):Base(eType_Bomb)
 {
@@ -16,10 +17,13 @@ Bomb::Bomb(bool flip,const CVector2D& pos):Base(eType_Bomb)
 void Bomb::Update()
 {
 	m_time++;
+	Base* map = Base::FindObject(eType_Field);
 	//if(m_img.GetIndex()==4){
+	if (Map* m = dynamic_cast<Map*>(map)) {
+		int t = m->CollisionMap(m_pos, m_rect);
 		if (m_flip) {
 			m_pos.x -= 3;
-			if (m_time >= 30) {
+			if (m_time >= 30|| t != 0) {
 				SetKill();
 				m_time = 0;
 				Base::Add(new Explosion(m_pos + CVector2D(-64, -40), m_flip, eType_Player_Attack,m_attack_no));
@@ -27,13 +31,14 @@ void Bomb::Update()
 		}
 		else {
 			m_pos.x += 3;
-			if (m_time >= 30) {
+			if (m_time >= 30|| t != 0) {
 				SetKill();
 				m_time = 0;
 				Base::Add(new Explosion(m_pos + CVector2D(64, -40), m_flip, eType_Player_Attack,m_attack_no));
 			}
 		}
-	//}
+	//}	
+	}
 }
 
 void Bomb::Draw()
