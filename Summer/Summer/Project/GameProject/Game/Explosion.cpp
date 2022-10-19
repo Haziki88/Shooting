@@ -1,7 +1,7 @@
 #include "Explosion.h"
 #include"Enemy.h"
 
-Explosion::Explosion(const CVector2D& pos, bool flip, int type)
+Explosion::Explosion(const CVector2D& pos, bool flip, int type,int attack_no)
 	:Base(eType_Explosion)
 {
 	//画像複製
@@ -19,7 +19,7 @@ Explosion::Explosion(const CVector2D& pos, bool flip, int type)
 	//再生アニメーション設定(非ループ)
 	m_img.ChangeAnimation(0, false);
 	//攻撃番号
-	
+	m_attack_no = attack_no;
 }
 
 void Explosion::Update()

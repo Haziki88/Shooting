@@ -99,7 +99,7 @@ Player::Player(const CVector2D& p, bool flip) :
 				//攻撃状態へ移行
 				m_state = eState_Attack;
 				m_attack_no++;
-				Base::Add(new Bullet(eType_Player_Bullet, m_flip, m_pos, 4));
+				Base::Add(new Bullet(eType_Player_Bullet, m_flip, m_pos, 4,m_attack_no));
 				m_count--;
 				if (m_count <= 0) {
 					m_state = eState_ReLoad;
@@ -211,8 +211,8 @@ void Player::Update() {
 	if (m_is_ground && m_vec.y > GRAVITY * 4)
 		m_is_ground = false;
 	//重力による落下
-	//m_vec.y += GRAVITY;
-	//m_pos += m_vec;
+	m_vec.y += GRAVITY;
+	m_pos += m_vec;
 	
 
 	//アニメーション更新
@@ -300,30 +300,18 @@ void Player::Collision(Base* b)
 		break;*/
 	case eType_Field:
 		//Field型へキャスト、型変換できたら
-		if (Field* f = dynamic_cast<Field*>(b)) {
-			//地面より下にいったら
-			if (m_pos.y > f->GetGroundY()) {
-				//地面の高さに戻す
-				m_pos.y = f->GetGroundY();
-				//落下速度リセット
-				m_vec.y = 0;
-				//接地フラグON
-				m_is_ground = true;
-			}
-		}
-		break;
-		/*if (Map* m = dynamic_cast<Map*>(b)) {
-			int t = m->CollisionMap(CVector2D(m_pos.x, m_pos_old.y));
+		if (Map* m = dynamic_cast<Map*>(b)) {
+			int t = m->CollisionMap(CVector2D(m_pos.x, m_pos_old.y),m_rect);
 			if (t != 0)
 				m_pos.x = m_pos_old.x;
-			t = m->CollisionMap(CVector2D(m_pos_old.x, m_pos.y));
+			t = m->CollisionMap(CVector2D(m_pos_old.x, m_pos.y),m_rect);
 			if (t != 0) {
 				m_pos.y = m_pos_old.y;
 				m_vec.y = 0;
 				m_is_ground = true;
 			}
 		}
-		break;*/
+		break;
 	}
 
 }
