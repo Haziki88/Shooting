@@ -184,6 +184,7 @@ void Player::StateReLoad()
 	}
 }
 void Player::Update() {
+	m_pos_old = m_pos;
 	switch (m_state) {
 		//’Êíó‘Ô
 	case eState_Idle:
