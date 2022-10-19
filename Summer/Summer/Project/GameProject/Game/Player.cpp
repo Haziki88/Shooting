@@ -6,6 +6,7 @@
 #include"Bomb.h"
 #include"Enemy.h"
 #include"Map.h"
+#include"Enemy.h"
 
 Player::Player(const CVector2D& p, bool flip) :
 	Base(eType_Player) {
@@ -265,39 +266,20 @@ void Player::Collision(Base* b)
 			b->SetKill();
 		}
 		break;
+		//敵との判定
 	case eType_Enemy:
-		//Enemy* e = dynamic_cast<Enemy*>(b);
-		if ( Base::CollisionRect(this, b)) {
-			if (m_hp > 0) {
-				//m_hp -= 5;
-			}
-			else {
-				m_state=eState_Down;
-			}
-		}
-		break;
-		//攻撃エフェクトとの判定
-	/*case eType_Enemy_Attack:
-		//Slash型へキャスト、型変換できたら
-		if (Slash* s = dynamic_cast<Slash*>(b)) {
-			if (m_damage_no != s->GetAttackNo() && Base::CollisionRect(this, s)) {
+		if (Enemy* e = dynamic_cast<Enemy*>(b)) {
+			if (m_damage_no != e->GetAttackNo() && Base::CollisionRect(this, e)) {
 				//同じ攻撃の連続ダメージ防止
-				m_damage_no = s->GetAttackNo();
+				m_damage_no = e->GetAttackNo();
 				m_hp -= 50;
 				if (m_hp <= 0) {
 					m_state = eState_Down;
 				}
-				else {
-					m_state = eState_Damage;
-
-				}
-				Base::Add(new Effect("Effect_Blood",
-					m_pos + CVector2D(0, -64), m_flip));
-
-				//Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -64), m_flip));
+				
 			}
 		}
-		break;*/
+		break;
 	case eType_Field:
 		//Field型へキャスト、型変換できたら
 		if (Map* m = dynamic_cast<Map*>(b)) {
