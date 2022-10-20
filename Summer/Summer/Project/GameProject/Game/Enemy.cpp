@@ -209,7 +209,6 @@ void Enemy::Update() {
 		//ダウン状態
 	case eState_Down:
 		StateDown();
-		SetKill();
 		break;
 	}
 
@@ -239,11 +238,13 @@ void Enemy::Collision(Base* b)
 {
 	switch (b->m_type) {
 	//攻撃エフェクトとの判定
-	case eType_Player_Bullet:
 		//Slash型へキャスト、型変換できたら
+
+
 		if (Bullet*  p= dynamic_cast<Bullet*>(b)) {
 			if (m_damage_no != p->GetAttackNo() && Base::CollisionRect(this, p)) {
 				//同じ攻撃の連続ダメージ防止
+
 				m_damage_no = p->GetAttackNo();
 				m_hp -= 50;
 				if (m_hp <= 0) {
@@ -257,6 +258,19 @@ void Enemy::Collision(Base* b)
 					//m_pos + CVector2D(0, -128), m_flip));
 
 				//Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -64), m_flip));
+			}
+		}
+		break;*/
+	case eType_Player:
+		//Enemy* e = dynamic_cast<Enemy*>(b);
+		if (Base::CollisionRect(this, b)) {
+			m_hp -= 5;
+			if (m_hp <= 0) {
+				m_state = eState_Down;
+				b->SetKill();
+			}
+			else {
+				
 			}
 		}
 		break;
