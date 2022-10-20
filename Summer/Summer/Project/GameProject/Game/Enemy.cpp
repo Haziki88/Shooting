@@ -1,11 +1,11 @@
 #include "Enemy.h"
 #include "AnimData.h"
-#include "Field.h"
 #include "Slash.h"
 #include "Effect.h"
 #include"Item.h"
 #include "Bomb2.h"
 #include"Bullet.h"
+#include"Map.h"
 
 Enemy::Enemy(const CVector2D& p, bool flip) :
 	Base(eType_Enemy) {
@@ -209,7 +209,6 @@ void Enemy::Update() {
 		//ダウン状態
 	case eState_Down:
 		StateDown();
-		SetKill();
 		break;
 	}
 
@@ -239,11 +238,13 @@ void Enemy::Collision(Base* b)
 {
 	switch (b->m_type) {
 	//攻撃エフェクトとの判定
-	case eType_Player_Bullet:
 		//Slash型へキャスト、型変換できたら
+
+
 		if (Bullet*  p= dynamic_cast<Bullet*>(b)) {
 			if (m_damage_no != p->GetAttackNo() && Base::CollisionRect(this, p)) {
 				//同じ攻撃の連続ダメージ防止
+
 				m_damage_no = p->GetAttackNo();
 				m_hp -= 50;
 				if (m_hp <= 0) {
@@ -260,20 +261,35 @@ void Enemy::Collision(Base* b)
 			}
 		}
 		break;
-	case eType_Field:
-		//Field型へキャスト、型変換できたら
-		if (Field* f = dynamic_cast<Field*>(b)) {
-			//地面より下にいったら
-			if (m_pos.y > f->GetGroundY()) {
-				//地面の高さに戻す
-				m_pos.y = f->GetGroundY();
-				//落下速度リセット
-				m_vec.y = 0;
-				//接地フラグON
-				m_is_ground = true;
+	case eType_Player:
+		//Enemy* e = dynamic_cast<Enemy*>(b);
+		if (Base::CollisionRect(this, b)) {
+			m_hp -= 5;
+			if (m_hp <= 0) {
+				m_state = eState_Down;
+				b->SetKill();
+			}
+			else {
+				
 			}
 		}
 		break;
+	case eType_Field:
+		//Field型へキャスト、型変換できたら
+			if (Map* m = dynamic_cast<Map*>(b)) {
+			int t = m->CollisionMap(CVector2D(m_pos.x, m_pos_old.y),m_rect);
+			if (t != 0)
+				m_pos.x = m_pos_old.x;
+			t = m->CollisionMap(CVector2D(m_pos_old.x, m_pos.y),m_rect);
+			if (t != 0) {
+				m_pos.y = m_pos_old.y;
+				m_vec.y = 0;
+				m_is_ground = true;
+}
+		}
+		break;
+
+			
 	}
 
 
