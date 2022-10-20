@@ -45,5 +45,11 @@ public:
 			return m_hp;
 		}
 	}
+	int GetAttackNo() {
+		Base* Enemy = Base::FindObject(eType_Enemy);
+		if (Enemy) {
+			return m_attack_no;
+		}
+	}
 	int m_hp = 100;
 };

@@ -5,6 +5,7 @@
 #include "Effect.h"
 #include"Item.h"
 #include "Bomb2.h"
+#include"Bullet.h"
 
 Enemy::Enemy(const CVector2D& p, bool flip) :
 	Base(eType_Enemy) {
@@ -237,12 +238,14 @@ void Enemy::Collision(Base* b)
 {
 	switch (b->m_type) {
 	//攻撃エフェクトとの判定
-	/*case eType_Player_Attack:
 		//Slash型へキャスト、型変換できたら
-		if (Slash* s = dynamic_cast<Slash*>(b)) {
-			if (m_damage_no != s->GetAttackNo() && Base::CollisionRect(this, s)) {
+
+
+		if (Bullet*  p= dynamic_cast<Bullet*>(b)) {
+			if (m_damage_no != p->GetAttackNo() && Base::CollisionRect(this, p)) {
 				//同じ攻撃の連続ダメージ防止
-				m_damage_no = s->GetAttackNo();
+
+				m_damage_no = p->GetAttackNo();
 				m_hp -= 50;
 				if (m_hp <= 0) {
 					m_state = eState_Down;

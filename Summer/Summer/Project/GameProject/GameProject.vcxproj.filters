@@ -35,14 +35,14 @@
     <ClCompile Include="Game\UI.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Gameteam\Game1\Game1\Project\GameProject\Game\Game.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Gameclear\Gameclear.cpp">
       <Filter>Gameclear</Filter>
     </ClCompile>
     <ClCompile Include="Gameover\Gameover.cpp">
       <Filter>Gameover</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Gameteam\Game1\Game1\Project\GameProject\Game\Game.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -96,14 +96,14 @@
     <ClInclude Include="Game\UI.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Gameteam\Game1\Game1\Project\GameProject\Game\Game.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Gameclear\Gameclear.h">
       <Filter>Gameclear</Filter>
     </ClInclude>
     <ClInclude Include="Gameover\Gameover.h">
       <Filter>Gameover</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Gameteam\Game1\Game1\Project\GameProject\Game\Game.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

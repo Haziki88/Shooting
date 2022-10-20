@@ -2,7 +2,7 @@
 #include"Map.h"
 #include"Enemy.h"
 
-Bullet::Bullet(int type,bool flip,const CVector2D& pos,float speed)
+Bullet::Bullet(int type,bool flip,const CVector2D& pos,float speed,int attack_no)
 	:Base(type)
 {
 	if (type == eType_Player_Bullet) {
@@ -16,6 +16,7 @@ Bullet::Bullet(int type,bool flip,const CVector2D& pos,float speed)
 	m_speed = speed;
 	m_flip = flip;
 	m_rect = CRect(-8, -8, 8, 8);
+	m_attack_no = attack_no;
 }
 
 Bullet::~Bullet()
@@ -43,13 +44,13 @@ void Bullet::Draw()
 void Bullet::Collision(Base* b)
 {
 	switch (b->m_type) {
-	/*case eType_Field:
+	case eType_Field:
 		if (Map* m = dynamic_cast<Map*>(b)) {
-			//int t = m->CollisionMap(m_pos);
-			//if (t != 0)
+			int t = m->CollisionMap(m_pos,m_rect);
+			if (t != 0)
 				SetKill();
 		}
-		break;*/
+		break;
 	case eType_Player:
 		if (m_type == eType_Enemy_Bullet && Base::CollisionRect(this, b)) {
 			SetKill();
@@ -57,10 +58,8 @@ void Bullet::Collision(Base* b)
 		}
 		break;
 	case eType_Enemy:
-		Enemy* e = dynamic_cast<Enemy*>(b);
 		if (m_type == eType_Player_Bullet && Base::CollisionRect(this,b)) {
 			SetKill();
-			e->m_hp -= 50;
 		}
 		break;
 	}

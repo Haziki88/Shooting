@@ -31,7 +31,7 @@ void MainLoop(void) {
 	Base::DrawAll();
 	//‚ä‚­‚ä‚­‚ÍƒQ[ƒ€ƒV[ƒ“‚ÉˆÚ‚·
 	Base* enemy = Base::FindObject(eType_Enemy);
-	if (enemy == nullptr/* || (PUSH(CInput::eButton1))*/) {
+	if (enemy == nullptr /* || (PUSH(CInput::eButton1))*/) {
 		Base* field = Base::FindObject(eType_Field);
 		field->SetKill();
 		stage++;
@@ -94,8 +94,6 @@ void Init(void)
 	//ADD_RESOURCE("ui x2", CImage::CreateImage("Image/ui x2.png"));
 
 
-	Base::Add(new Player(CVector2D(200,300),false));
-	Base::Add(new Enemy(CVector2D(200, 300), false));
 	Base::Add(new Item(eType_Item,CVector2D(500, 300)));
 	Base::Add(new Item(eType_Item2, CVector2D(700, 300)));
 	Base::Add(new UI());
