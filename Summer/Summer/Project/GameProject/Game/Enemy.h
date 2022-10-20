@@ -14,7 +14,7 @@ private:
 	//ó‘Ô•Ï”
 	int m_state;
 	int m_cnt;
-
+	int m_hp = 100;
 	CImage m_img;
 	bool	m_flip;
 	//’…’nƒtƒ‰ƒO
@@ -51,5 +51,4 @@ public:
 			return m_attack_no;
 		}
 	}
-	int m_hp = 100;
 };

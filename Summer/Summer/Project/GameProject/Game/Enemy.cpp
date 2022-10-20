@@ -1,11 +1,11 @@
 #include "Enemy.h"
 #include "AnimData.h"
-#include "Field.h"
 #include "Slash.h"
 #include "Effect.h"
 #include"Item.h"
 #include "Bomb2.h"
 #include"Bullet.h"
+#include"Map.h"
 
 Enemy::Enemy(const CVector2D& p, bool flip) :
 	Base(eType_Enemy) {
@@ -260,7 +260,7 @@ void Enemy::Collision(Base* b)
 				//Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -64), m_flip));
 			}
 		}
-		break;*/
+		break;
 	case eType_Player:
 		//Enemy* e = dynamic_cast<Enemy*>(b);
 		if (Base::CollisionRect(this, b)) {
@@ -276,18 +276,20 @@ void Enemy::Collision(Base* b)
 		break;
 	case eType_Field:
 		//Field型へキャスト、型変換できたら
-		if (Field* f = dynamic_cast<Field*>(b)) {
-			//地面より下にいったら
-			if (m_pos.y > f->GetGroundY()) {
-				//地面の高さに戻す
-				m_pos.y = f->GetGroundY();
-				//落下速度リセット
+			if (Map* m = dynamic_cast<Map*>(b)) {
+			int t = m->CollisionMap(CVector2D(m_pos.x, m_pos_old.y),m_rect);
+			if (t != 0)
+				m_pos.x = m_pos_old.x;
+			t = m->CollisionMap(CVector2D(m_pos_old.x, m_pos.y),m_rect);
+			if (t != 0) {
+				m_pos.y = m_pos_old.y;
 				m_vec.y = 0;
-				//接地フラグON
 				m_is_ground = true;
-			}
+}
 		}
 		break;
+
+			
 	}
 
 
