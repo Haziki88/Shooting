@@ -32,7 +32,6 @@ void Explosion::Update()
 	if (m_img.CheckAnimationEnd()) {
 		//エフェクトを削除
 		SetKill();
-		e->m_hp -= 100;
 	}
 }
 

@@ -272,7 +272,7 @@ void Player::Collision(Base* b)
 			if (m_damage_no != e->GetAttackNo() && Base::CollisionRect(this, e)) {
 				//“¯‚¶UŒ‚‚Ì˜A‘±ƒ_ƒ[ƒW–hŽ~
 				m_damage_no = e->GetAttackNo();
-				m_hp -= 50;
+				m_hp -= 25;
 				if (m_hp <= 0) {
 					m_state = eState_Down;
 				}
