@@ -91,6 +91,10 @@ void Init(void)
 	ADD_RESOURCE("Item2", CImage::CreateImage("Image/Item2.png"));
 	ADD_RESOURCE("Bomb", CImage::CreateImage("Image/Bomb.png"));
 	ADD_RESOURCE("explosion-3", CImage::CreateImage("Image/explosion-3.png",effect_bomb_anim_data,128,80));
+	ADD_RESOURCE("towerED", CImage::CreateImage("Image/towerED.png"));
+	ADD_RESOURCE("Gameover", CImage::CreateImage("Image/Gameover.png"));
+	ADD_RESOURCE("utyuu", CImage::CreateImage("Image/utyuu.png"));
+
 	//ADD_RESOURCE("ui x2", CImage::CreateImage("Image/ui x2.png"));
 
 
