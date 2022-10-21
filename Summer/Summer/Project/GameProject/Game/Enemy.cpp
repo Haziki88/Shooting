@@ -195,7 +195,7 @@ void Enemy::Update() {
 		StateDown();
 		break;
 	}
-	if (m_is_ground && m_vec.y > GRAVITY * 4)//27
+	if (m_is_ground && m_vec.y > GRAVITY * 4)
 		m_is_ground = false;
 	//d—Í‚É‚æ‚é—‰º
 	m_vec.y += GRAVITY;
