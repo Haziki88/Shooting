@@ -99,11 +99,11 @@ Player::Player(const CVector2D& p, bool flip) :
 				//UŒ‚ó‘Ô‚ÖˆÚs
 				m_state = eState_Attack;
 				m_attack_no++;
-				Base::Add(new Bullet(eType_Player_Bullet, m_flip, m_gun_pos, 4,m_attack_no));
 				m_count--;
-				if (m_count < 0) {
+				if (m_count <= 0) {
 					m_state = eState_ReLoad;
 				}
+				Base::Add(new Bullet(eType_Player_Bullet, m_flip, m_gun_pos, 4, m_attack_no));
 		}
 		if (m_countb>0&&PUSH(CInput::eButton7)) {
 				m_attack_no++;
