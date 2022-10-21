@@ -11,7 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\Gameteam\Game1\Game1\Project\GameProject\Game\Game.cpp" />
     <ClCompile Include="Base\Base.cpp" />
     <ClCompile Include="Gameclear\Gameclear.cpp" />
     <ClCompile Include="Gameover\Gameover.cpp" />
@@ -21,6 +20,7 @@
     <ClCompile Include="Game\Bullet.cpp" />
     <ClCompile Include="Game\Enemy.cpp" />
     <ClCompile Include="Game\Explosion.cpp" />
+    <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Game\Item.cpp" />
     <ClCompile Include="Game\Map.cpp" />
     <ClCompile Include="Game\Player.cpp" />
@@ -28,7 +28,6 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\Gameteam\Game1\Game1\Project\GameProject\Game\Game.h" />
     <ClInclude Include="Base\Base.h" />
     <ClInclude Include="Gameclear\Gameclear.h" />
     <ClInclude Include="Gameover\Gameover.h" />
@@ -38,6 +37,7 @@
     <ClInclude Include="Game\Bullet.h" />
     <ClInclude Include="Game\Enemy.h" />
     <ClInclude Include="Game\Explosion.h" />
+    <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Game\Item.h" />
     <ClInclude Include="Game\Map.h" />
     <ClInclude Include="Game\Player.h" />

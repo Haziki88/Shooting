@@ -1,8 +1,7 @@
 #include "Player.h"
 #include "AnimData.h"
-#include "Field.h"
+#include"Explosion.h"
 #include"Bullet.h"
-#include "Effect.h"
 #include"Bomb.h"
 #include"Enemy.h"
 #include"Map.h"
@@ -15,7 +14,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	//再生アニメーション設定
 	m_img.ChangeAnimation(0);
 	//座標設定
-	m_pos_old=m_pos = p;
+	m_pos_old=m_bom_pos=m_gun_pos=m_pos = p;
 	//中心位置設定
 	m_img.SetCenter(32, 64);
 	m_rect = CRect(-12, -32, 12, 0);
@@ -36,7 +35,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	//弾の上限
 	m_bullet = m_count;
 	//爆弾の持っている数
-	m_countb = 1;
+	m_countb = 2;
 	
 	
 
@@ -67,22 +66,7 @@ Player::Player(const CVector2D& p, bool flip) :
 			m_flip = false;
 			move_flag = true;
 		}
-		//上移動
-		if (HOLD(CInput::eUp)) {
-			//移動量を設定
-			m_pos.y+= -move_speed;
-			//反転フラグ
-			m_flip = false;
-			move_flag = true;
-		}
-		//下移動
-		if (HOLD(CInput::eDown)) {
-			//移動量を設定
-			m_pos.y += move_speed;
-			//反転フラグ
-			m_flip = false;
-			move_flag = true;
-		}
+		
 		//ジャンプ
 		if (m_is_ground && PUSH(CInput::eButton5)) {
 			m_vec.y = -jump_pow;
@@ -100,15 +84,15 @@ Player::Player(const CVector2D& p, bool flip) :
 				//攻撃状態へ移行
 				m_state = eState_Attack;
 				m_attack_no++;
-				Base::Add(new Bullet(eType_Player_Bullet, m_flip, m_pos, 4,m_attack_no));
 				m_count--;
-				if (m_count < 0) {
+				if (m_count <= 0) {
 					m_state = eState_ReLoad;
 				}
+				Base::Add(new Bullet(eType_Player_Bullet, m_flip, m_gun_pos, 4, m_attack_no));
 		}
 		if (m_countb>0&&PUSH(CInput::eButton7)) {
 				m_attack_no++;
-				Base::Add(new Bomb(m_flip,m_pos));
+				Base::Add(new Bomb(m_flip,m_bom_pos));
 				m_countb--;
 		
 		}
@@ -186,6 +170,8 @@ void Player::StateReLoad()
 }
 void Player::Update() {
 	m_pos_old = m_pos;
+	m_gun_pos = CVector2D(m_pos.x, m_pos.y-14);
+	m_bom_pos = CVector2D(m_pos.x, m_pos.y - 8);
 	switch (m_state) {
 		//通常状態
 	case eState_Idle:
@@ -262,8 +248,27 @@ void Player::Collision(Base* b)
 		break;
 	case eType_Bomb2:
 		if (Base::CollisionRect(this, b)) {
-			m_countb++;
+			if (m_countb <= 3) {
+				m_countb++;
+			}
+			else {
+				m_countb = 3;
+			}
+			
 			b->SetKill();
+		}
+		break;
+	case eType_Explosion:
+		if (Explosion* e = dynamic_cast<Explosion*>(b)) {
+			if (m_damage_no != e->GetAttackNo() && Base::CollisionRect(this, e)) {
+				//同じ攻撃の連続ダメージ防止
+
+				m_damage_no = e->GetAttackNo();
+				m_hp -= 50;
+				if (m_hp <= 0) {
+					m_state = eState_Down;
+				}
+			}
 		}
 		break;
 		//敵との判定
@@ -272,7 +277,7 @@ void Player::Collision(Base* b)
 			if (m_damage_no != e->GetAttackNo() && Base::CollisionRect(this, e)) {
 				//同じ攻撃の連続ダメージ防止
 				m_damage_no = e->GetAttackNo();
-				m_hp -= 50;
+				m_hp -= 25;
 				if (m_hp <= 0) {
 					m_state = eState_Down;
 				}
