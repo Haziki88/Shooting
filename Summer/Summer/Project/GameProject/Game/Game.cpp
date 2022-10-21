@@ -3,7 +3,7 @@
 #include "Player.h"
 #include "Enemy.h"
 //#include "../Title/Title.h"
-#include"../Game over/Game over.h"
+//#include"../Game over/Game over.h"
 
 Game::Game() :Base(eType_Scene)
 {
@@ -20,7 +20,7 @@ Game::~Game()
 	//Base::Add(new Title());
 
 	if (!Base::FindObject(eType_Player) ) {
-		Base::Add(new Gameover());
+		//Base::Add(new Gameover());
 		m_kill = true;
 	}
 }
