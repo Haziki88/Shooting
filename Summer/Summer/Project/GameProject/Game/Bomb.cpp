@@ -18,26 +18,29 @@ void Bomb::Update()
 {
 	m_time++;
 	Base* map = Base::FindObject(eType_Field);
-	//if(m_img.GetIndex()==4){
+	Base* explosion = Base::FindObject(eType_Explosion);
+	Explosion* e = dynamic_cast<Explosion*>(explosion);
 	if (Map* m = dynamic_cast<Map*>(map)) {
 		int t = m->CollisionMap(m_pos, m_rect);
-		if (m_flip) {
-			m_pos.x -= 3;
-			if (m_time >= 30|| t != 0) {
-				SetKill();
-				m_time = 0;
-				Base::Add(new Explosion(m_pos + CVector2D(-64, -40), m_flip, eType_Player_Attack,m_attack_no));
+		//if (e->GetexImage() == 4) {
+			if (m_flip) {
+				m_pos.x -= 3;
+				if (m_time >= 30 || t != 0) {
+					SetKill();
+					m_time = 0;
+					Base::Add(new Explosion(m_pos + CVector2D(-64, -40), m_flip, eType_Player_Attack, m_attack_no));
+				}
 			}
-		}
-		else {
-			m_pos.x += 3;
-			if (m_time >= 30|| t != 0) {
-				SetKill();
-				m_time = 0;
-				Base::Add(new Explosion(m_pos + CVector2D(64, -40), m_flip, eType_Player_Attack,m_attack_no));
+			else {
+				m_pos.x += 3;
+				if (m_time >= 30 || t != 0) {
+					SetKill();
+					m_time = 0;
+					Base::Add(new Explosion(m_pos + CVector2D(64, -40), m_flip, eType_Player_Attack, m_attack_no));
+				}
 			}
-		}
-	//}	
+
+		//}
 	}
 }
 
