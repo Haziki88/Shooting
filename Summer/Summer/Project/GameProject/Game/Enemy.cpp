@@ -6,6 +6,7 @@
 #include "Bomb2.h"
 #include"Bullet.h"
 #include"Map.h"
+#include"Explosion.h"
 
 Enemy::Enemy(const CVector2D& p, bool flip) :
 	Base(eType_Enemy) {
@@ -240,7 +241,7 @@ void Enemy::Collision(Base* b)
 	//攻撃エフェクトとの判定
 		//Slash型へキャスト、型変換できたら
 
-
+	case eType_Player_Bullet:
 		if (Bullet*  p= dynamic_cast<Bullet*>(b)) {
 			if (m_damage_no != p->GetAttackNo() && Base::CollisionRect(this, p)) {
 				//同じ攻撃の連続ダメージ防止
@@ -258,6 +259,23 @@ void Enemy::Collision(Base* b)
 					//m_pos + CVector2D(0, -128), m_flip));
 
 				//Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -64), m_flip));
+			}
+		}
+		break;
+	case eType_Explosion:
+		if (Explosion* e = dynamic_cast<Explosion*>(b)) {
+			if (m_damage_no != e->GetAttackNo() && Base::CollisionRect(this, e)) {
+				//同じ攻撃の連続ダメージ防止
+
+				m_damage_no = e->GetAttackNo();
+				m_hp -= 100;
+				if (m_hp <= 0) {
+					m_state = eState_Down;
+				}
+				else {
+					m_state = eState_Damage;
+
+				}
 			}
 		}
 		break;
