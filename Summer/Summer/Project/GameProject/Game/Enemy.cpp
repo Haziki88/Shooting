@@ -84,24 +84,6 @@ void Enemy::StateIdle()
 				m_flip = false;
 				move_flag = true;
 			}
-			else
-				//上移動
-				if (player->m_pos.y < m_pos.y - 4) {
-					//移動量を設定
-					m_pos.y += -move_speed;
-					//反転フラグ
-					m_flip = false;
-					move_flag = true;
-				}
-				else
-					//右移動
-					if (player->m_pos.y > m_pos.y + 4) {
-						//移動量を設定
-						m_pos.y += move_speed;
-						//反転フラグ
-						m_flip = false;
-						move_flag = true;
-					}
 			else {
 				//攻撃状態へ移行
 				m_state = eState_Attack;
@@ -212,6 +194,11 @@ void Enemy::Update() {
 		StateDown();
 		break;
 	}
+	if (m_is_ground && m_vec.y > GRAVITY * 4)//27
+		m_is_ground = false;
+	//重力による落下
+	m_vec.y += GRAVITY;
+	m_pos += m_vec;
 
 	//アニメーション更新
 	m_img.UpdateAnimation();
