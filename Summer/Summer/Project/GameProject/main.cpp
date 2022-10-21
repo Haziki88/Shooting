@@ -33,7 +33,10 @@ void MainLoop(void) {
 	Base* enemy = Base::FindObject(eType_Enemy);
 	if (enemy == nullptr /* || (PUSH(CInput::eButton1))*/) {
 		Base* field = Base::FindObject(eType_Field);
+		Base* player = Base::FindObject(eType_Player);
+		Base* enemy = Base::FindObject(eType_Enemy);
 		field->SetKill();
+		player->SetKill();
 		stage++;
 		if (stage >= 3) {
 			//ゲームクリアに移行
