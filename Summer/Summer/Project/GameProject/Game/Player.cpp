@@ -1,8 +1,7 @@
 #include "Player.h"
 #include "AnimData.h"
-#include "Field.h"
+#include"Explosion.h"
 #include"Bullet.h"
-#include "Effect.h"
 #include"Bomb.h"
 #include"Enemy.h"
 #include"Map.h"
@@ -264,6 +263,23 @@ void Player::Collision(Base* b)
 		if (Base::CollisionRect(this, b)) {
 			m_countb++;
 			b->SetKill();
+		}
+		break;
+	case eType_Explosion:
+		if (Explosion* e = dynamic_cast<Explosion*>(b)) {
+			if (m_damage_no != e->GetAttackNo() && Base::CollisionRect(this, e)) {
+				//“¯‚¶UŒ‚‚Ì˜A‘±ƒ_ƒ[ƒW–hŽ~
+
+				m_damage_no = e->GetAttackNo();
+				m_hp -= 50;
+				if (m_hp <= 0) {
+					m_state = eState_Down;
+				}
+				else {
+					m_state = eState_Damage;
+
+				}
+			}
 		}
 		break;
 		//“G‚Æ‚Ì”»’è

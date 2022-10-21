@@ -1,6 +1,5 @@
 #include "Bullet.h"
 #include"Map.h"
-#include"Enemy.h"
 
 Bullet::Bullet(int type,bool flip,const CVector2D& pos,float speed,int attack_no)
 	:Base(type)

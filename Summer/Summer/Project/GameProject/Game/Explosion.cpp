@@ -27,8 +27,6 @@ void Explosion::Update()
 	//アニメーション更新
 	m_img.UpdateAnimation();
 	//アニメーション終了チェック
-	Base* enemy = Base::FindObject(eType_Enemy);
-	Enemy* e = dynamic_cast<Enemy*>(enemy);
 	if (m_img.CheckAnimationEnd()) {
 		//エフェクトを削除
 		SetKill();
