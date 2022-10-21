@@ -14,7 +14,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	//再生アニメーション設定
 	m_img.ChangeAnimation(0);
 	//座標設定
-	m_pos_old=m_pos = p;
+	m_pos_old=m_bom_pos=m_gun_pos=m_pos = p;
 	//中心位置設定
 	m_img.SetCenter(32, 64);
 	m_rect = CRect(-12, -32, 12, 0);
@@ -35,7 +35,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	//弾の上限
 	m_bullet = m_count;
 	//爆弾の持っている数
-	m_countb = 1;
+	m_countb = 2;
 	
 	
 
@@ -99,7 +99,7 @@ Player::Player(const CVector2D& p, bool flip) :
 				//攻撃状態へ移行
 				m_state = eState_Attack;
 				m_attack_no++;
-				Base::Add(new Bullet(eType_Player_Bullet, m_flip, m_pos, 4,m_attack_no));
+				Base::Add(new Bullet(eType_Player_Bullet, m_flip, m_gun_pos, 4,m_attack_no));
 				m_count--;
 				if (m_count < 0) {
 					m_state = eState_ReLoad;
@@ -107,7 +107,7 @@ Player::Player(const CVector2D& p, bool flip) :
 		}
 		if (m_countb>0&&PUSH(CInput::eButton7)) {
 				m_attack_no++;
-				Base::Add(new Bomb(m_flip,m_pos));
+				Base::Add(new Bomb(m_flip,m_bom_pos));
 				m_countb--;
 		
 		}
@@ -185,6 +185,8 @@ void Player::StateReLoad()
 }
 void Player::Update() {
 	m_pos_old = m_pos;
+	m_gun_pos = CVector2D(m_pos.x, m_pos.y-14);
+	m_bom_pos = CVector2D(m_pos.x, m_pos.y - 8);
 	switch (m_state) {
 		//通常状態
 	case eState_Idle:
@@ -274,10 +276,6 @@ void Player::Collision(Base* b)
 				m_hp -= 50;
 				if (m_hp <= 0) {
 					m_state = eState_Down;
-				}
-				else {
-					m_state = eState_Damage;
-
 				}
 			}
 		}

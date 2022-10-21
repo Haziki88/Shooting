@@ -27,6 +27,8 @@ private:
 	int m_count;
 	int m_bullet;
 	int m_countb;
+	CVector2D m_gun_pos;
+	CVector2D m_bom_pos;
 
 	//‹éŒ`
 	
