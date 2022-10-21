@@ -57,4 +57,10 @@ public:
 			return m_count;
 		}
 	}
+	int getbom() {
+		Base* player = Base::FindObject(eType_Player);
+		if (player) {
+			return m_countb;
+		}
+	}
 };

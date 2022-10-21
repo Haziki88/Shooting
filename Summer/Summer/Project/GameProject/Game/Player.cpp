@@ -263,7 +263,13 @@ void Player::Collision(Base* b)
 		break;
 	case eType_Bomb2:
 		if (Base::CollisionRect(this, b)) {
-			m_countb++;
+			if (m_countb <= 3) {
+				m_countb++;
+			}
+			else {
+				m_countb = 3;
+			}
+			
 			b->SetKill();
 		}
 		break;
