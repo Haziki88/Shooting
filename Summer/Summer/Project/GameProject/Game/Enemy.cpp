@@ -34,6 +34,7 @@ Enemy::Enemy(const CVector2D& p, bool flip) :
 	m_attack_no = -1;
 	m_rad = 16;
 	m_cnt = 0;
+	m_hp = 100;
 	
 }
 Enemy::~Enemy() {
@@ -181,13 +182,11 @@ void Enemy::StateDamage()
 }
 void Enemy::StateDown()
 {
-	/*m_img.ChangeAnimation(eAnimDown, false);
+	m_img.ChangeAnimation(eAnimDown, false);
 	if (m_img.CheckAnimationEnd()) {
-		Base::Add(new Effect("Effect_Smoke",
-			m_pos + CVector2D(0, 0), m_flip));
 
 		m_kill = true;
-	}*/
+	}
 }
 void Enemy::Update() {
 	m_pos_old = m_pos;

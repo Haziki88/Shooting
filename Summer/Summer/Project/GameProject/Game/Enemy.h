@@ -14,7 +14,7 @@ private:
 	//ó‘Ô•Ï”
 	int m_state;
 	int m_cnt;
-	int m_hp = 100;
+	int m_hp ;
 	CImage m_img;
 	bool	m_flip;
 	//’…’nƒtƒ‰ƒO
