@@ -66,22 +66,7 @@ Player::Player(const CVector2D& p, bool flip) :
 			m_flip = false;
 			move_flag = true;
 		}
-		//上移動
-		if (HOLD(CInput::eUp)) {
-			//移動量を設定
-			m_pos.y+= -move_speed;
-			//反転フラグ
-			m_flip = false;
-			move_flag = true;
-		}
-		//下移動
-		if (HOLD(CInput::eDown)) {
-			//移動量を設定
-			m_pos.y += move_speed;
-			//反転フラグ
-			m_flip = false;
-			move_flag = true;
-		}
+		
 		//ジャンプ
 		if (m_is_ground && PUSH(CInput::eButton5)) {
 			m_vec.y = -jump_pow;
