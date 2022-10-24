@@ -106,8 +106,6 @@ void Init(void)
 	//ADD_RESOURCE("ui x2", CImage::CreateImage("Image/ui x2.png"));
 
 
-	Base::Add(new Item(eType_Item,CVector2D(500, 300)));
-	Base::Add(new Item(eType_Item2, CVector2D(700, 300)));
 	Base::Add(new UI());
 	Base::Add(new Map(1));
 
