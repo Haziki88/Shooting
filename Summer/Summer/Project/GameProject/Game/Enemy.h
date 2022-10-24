@@ -51,4 +51,5 @@ public:
 			return m_attack_no;
 		}
 	}
+	
 };
