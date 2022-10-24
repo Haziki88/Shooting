@@ -217,7 +217,7 @@ void Player::Draw() {
 	m_img.SetFlipH(m_flip);
 	//•`‰æ
 	m_img.Draw();
-	DrawRect();
+	
 }
 void Player::Collision(Base* b)
 {

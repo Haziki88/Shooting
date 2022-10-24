@@ -18,8 +18,7 @@
 #include"Game/Bomb.h"
 #include"Game/UI.h"
 #include"Gameclear/Gameclear.h"
-int stage = 1;
-
+#include"Title/Title.h"
 
 void MainLoop(void) {
 	//--------------------------------------------------------------
@@ -31,26 +30,7 @@ void MainLoop(void) {
 	Base::CollisionAll();
 	Base::DrawAll();
 	//ゆくゆくはゲームシーンに移す
-	Base* enemy = Base::FindObject(eType_Enemy);
-	if (enemy == nullptr /* || (PUSH(CInput::eButton1))*/) {
-		Base* field = Base::FindObject(eType_Field);
-		Base* player = Base::FindObject(eType_Player);
-		Base* enemy = Base::FindObject(eType_Enemy);
-		field->SetKill();
-		player->SetKill();
-		stage++;
-		if (stage >= 3) {
-			//ゲームクリアに移行
-			//全てのオブジェクトを破棄
-			Base::KillAll();
-		
-			//Base::Add(new Gameclear());
-		}
-		else
-		{
-			Base::Add(new Map(stage));
-		}
-	}
+	
 
 }
 void Init(void)
@@ -105,10 +85,8 @@ void Init(void)
 
 	//ADD_RESOURCE("ui x2", CImage::CreateImage("Image/ui x2.png"));
 
-
-	Base::Add(new UI());
-	Base::Add(new Map(1));
-
+	Base::Add(new Title());
+	
 
 }
 

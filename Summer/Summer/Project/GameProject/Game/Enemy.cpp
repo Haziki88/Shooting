@@ -219,8 +219,7 @@ void Enemy::Draw() {
 	m_img.SetFlipH(m_flip);
 	//•`‰æ
 	m_img.Draw();
-	//“–‚½‚è”»’è‹éŒ`‚Ì•\Ž¦
-	DrawRect();
+	
 }
 void Enemy::Collision(Base* b)
 {
