@@ -59,7 +59,6 @@ public:
 	//削除フラグON
 	void SetKill() { m_kill = true; }
 	//全てのオブジェクトの更新
-	static void UpdateAll();
 	//全てのオブジェクトの描画
 	static void DrawAll();
 	//全てのオブジェクトの当たり判定検証
@@ -75,6 +74,7 @@ public:
 	static bool CollisionRect(Base* b1, Base* b2);
 	/// 矩形の表示
 	void DrawRect();
+	static void UpdateAll();
 
 	static Base* FindObject(int type);
 	static std::list<Base*> FindObjects(int type);

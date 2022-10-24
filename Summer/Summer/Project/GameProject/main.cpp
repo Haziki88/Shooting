@@ -17,6 +17,7 @@
 #include"Game/Item.h"
 #include"Game/Bomb.h"
 #include"Game/UI.h"
+#include"Gameclear/Gameclear.h"
 int stage = 1;
 
 
@@ -40,7 +41,10 @@ void MainLoop(void) {
 		stage++;
 		if (stage >= 3) {
 			//ゲームクリアに移行
-
+			//全てのオブジェクトを破棄
+			Base::KillAll();
+		
+			//Base::Add(new Gameclear());
 		}
 		else
 		{
@@ -97,12 +101,11 @@ void Init(void)
 	ADD_RESOURCE("towerED", CImage::CreateImage("Image/towerED.png"));
 	ADD_RESOURCE("Gameover", CImage::CreateImage("Image/Gameover.png"));
 	ADD_RESOURCE("utyuu", CImage::CreateImage("Image/utyuu.png"));
+	ADD_RESOURCE("title", CImage::CreateImage("Image/title.png"));
 
 	//ADD_RESOURCE("ui x2", CImage::CreateImage("Image/ui x2.png"));
 
 
-	Base::Add(new Item(eType_Item,CVector2D(500, 300)));
-	Base::Add(new Item(eType_Item2, CVector2D(700, 300)));
 	Base::Add(new UI());
 	Base::Add(new Map(1));
 

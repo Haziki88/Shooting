@@ -274,15 +274,14 @@ void Player::Collision(Base* b)
 		//“G‚Æ‚Ì”»’è
 	case eType_Enemy:
 		if (Enemy* e = dynamic_cast<Enemy*>(b)) {
-			if (m_damage_no != e->GetAttackNo() && Base::CollisionRect(this, e)) {
-				//“¯‚¶UŒ‚‚Ì˜A‘±ƒ_ƒ[ƒW–hŽ~
-				m_damage_no = e->GetAttackNo();
-				m_hp -= 25;
-				if (m_hp <= 0) {
-					m_state = eState_Down;
+				if (m_damage_no != e->GetAttackNo() && Base::CollisionRect(this, e)) {
+					//“¯‚¶UŒ‚‚Ì˜A‘±ƒ_ƒ[ƒW–hŽ~
+					m_damage_no = e->GetAttackNo();
+					m_hp -= 25;
+					if (m_hp <= 0) {
+						m_state = eState_Down;
+					}
 				}
-				
-			}
 		}
 		break;
 	case eType_Field:
